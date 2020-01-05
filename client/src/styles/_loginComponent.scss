@@ -1,0 +1,49 @@
+.main {
+    margin-top: 40px !important;
+  }
+
+  .login-flex {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-items: center;
+    /* align-items: center; */
+    .login {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        /* height: 100vh; */
+        /* justify-items: center;
+        align-content: center; */
+        justify-content: center;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-image: url(https://images.unsplash.com/photo-1502101872923-d48509bff386?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60);
+        /* https://images.unsplash.com/photo-1546198632-9ef6368bef12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60
+          */
+        /* position: relative; */
+        text-align: center;
+        /* padding-top: 30vh;
+        height: 100vh; */
+      }
+  }
+  
+
+
+  .my-buttons {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    .button{
+      margin: 2px 0;
+    }
+  }
+  .my-buttons a {
+    width: 50%;
+  }
+
+
+  
