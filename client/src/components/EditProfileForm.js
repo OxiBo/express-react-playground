@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
+// import { connect } from 'react-redux';
+import validateEmail from "../utils/validateEmail";
+import renderRadioInput  from "../utils/renderRadioInput";
+
 
 class EditProfileForm extends Component {
+
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className="ui field error message">
+          <div className="header">{error}</div>
+        </div>
+      );
+    }
+  }
+
 
   renderInput = ({ input, meta, label, placeholder, type, id }) => {
     // console.log(input.name);
@@ -17,18 +32,17 @@ class EditProfileForm extends Component {
           autoComplete="off"
         />
 
-        {/* {this.renderError(meta)} */}
+        {this.renderError(meta)}
       </div>
     );
   };
 
   render() {
       const { name, avatar }  = this.props.user;
-   
-    //  console.log(this.props)
+
     return (
       <form
-        onSubmit={this.props.handleSubmit(this.props.onFormSubmit)}
+        onSubmit={this.props.handleSubmit((values)=> this.props.onFormSubmit(values))}
         action=""
         className="ui form error"
       >
@@ -52,11 +66,23 @@ class EditProfileForm extends Component {
                     name={info[0]}
                     component={this.renderInput}
                     type="text"
-                    placeholder={info[1] || "Not specified"}
+                    placeholder={info[1]}
                   />
                 </div>
               );
             })}
+            <div className="field">
+                <Field
+                  name="gender"
+                  label="CHOOSE YOUR GENDER"
+                  component={renderRadioInput}
+                  options={{
+                    male: "Male",
+                    female: "Female",
+                    notDefined: "Prefer not to say"
+                  }}
+                />
+              </div>
           </div>
         </div>
         <div className="buttons">
@@ -69,8 +95,46 @@ class EditProfileForm extends Component {
     );
   }
 }
+const validate = (formValues, props) => {
+  //   console.log(props)
+  const errors = {};
 
-export default reduxForm({ form: "editProfileForm", enableReinitialize: true })(EditProfileForm); // destroyOnUnmount: false, in case if i needed form to be filled in with values after the forms has been submitted
+  
+
+  // if (!formValues.email) {
+  //   // run if the user did not enter your email
+  //   errors.email = "You must enter your email";
+  // }
+
+  if (!validateEmail(formValues.email)) {
+    errors.email = "You must enter valid email";
+  } 
+
+  // if (formValues.avatarUrl && !validateURL(formValues.avatarUrl)) {
+  //   errors.avatarUrl = "Enter valid URL";
+  // }
+
+  if (formValues.occupation && formValues.occupation.length > 40) {
+    errors.occupation = "Your occupation is too long";
+  }
+
+  // check if user filled in age field with a number
+  if(isNaN(formValues.age)){
+    errors.age =
+    "Your age have to be a number";
+  }
+
+  if (formValues.age && (formValues.age > 110 || formValues.age < 14)) {
+    errors.age =
+      "You have to be older then 14 years old and younger then 110 years old";
+  }
+  //   console.log(errors);
+  return errors;
+};
+
+export default reduxForm({ form: "editProfileForm", enableReinitialize: true, validate })(EditProfileForm); // destroyOnUnmount: false, in case if i needed form to be filled in with values after the forms has been submitted
+
+// export default reduxForm({ form: "editProfileForm", enableReinitialize: true, validate })(connect(null, { editProfile })(EditProfileForm)); 
 
 /*  <div className="ui main text container segment">
 {this.props.current_user ? (

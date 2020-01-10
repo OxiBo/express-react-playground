@@ -35,8 +35,8 @@ passport.use(
             //     }
             //   })
             ({
-              local: { username, email },
-              bio: { occupation, age, avatar: avatarUrl }
+              local: { username },
+              bio: { occupation, age, email, avatar: avatarUrl }
             })
           );
           newUser.local.password = newUser.generateHash(password);

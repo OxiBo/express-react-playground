@@ -6,5 +6,5 @@
     { label: "Confirm Password", name: "confirmPassword", type: 'password'},
     { label: "Avatar URL", name: "avatarUrl", type: "text" },
     { label: "Occupation", name: "occupation", type: 'text' },
-    { label: "Age", name: "age", type: 'number' },
+    { label: "Age", name: "age", type: 'text' },
   ];

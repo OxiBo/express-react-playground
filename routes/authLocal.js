@@ -19,10 +19,10 @@ router.post("/api/signup", async (req, res) => {
     } else {
       passport.authenticate("local")(req, res, () => {
         // console.log(req.user);
-        const { avatarUrl, occupation, age, gender } = req.user.bio;
+        const { avatarUrl, occupation, age, gender, email } = req.user.bio;
         const newUser = {
-          local: {username: req.user.local.username, email: req.user.email},
-          bio: { avatarUrl, occupation, gender, age }
+          local: { username: req.user.local.username },
+          bio: { avatarUrl, occupation, gender, age, email }
         };
         res.send(newUser);
       });
@@ -51,7 +51,7 @@ router.get("/api/username-check/:name", async (req, res) => {
 });
 
 router.post("/api/login", async (req, res) => {
-//   console.log(req.body);
+  //   console.log(req.body);
   // check if username exist in database
   try {
     const foundUser = await User.findOne({
@@ -66,6 +66,31 @@ router.post("/api/login", async (req, res) => {
         // console.log(req.user);
         res.send(foundUser);
       });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(422).send(error);
+  }
+});
+
+router.patch("/api/edit-profile/:userId", async (req, res) => {
+  console.log(req.params.userId);
+  console.log(req.body);
+
+  // find user  in database
+  try {
+    const { age, gender, occupation, email } = req.body;
+    const updatedUser = await User.findByIdAndUpdate(req.params.userId, {
+      bio: req.body
+    });
+    // const test = await User.findById(req.params.userId)
+
+    // console.log(test)
+    console.log(updatedUser)
+    if (updatedUser) {
+      res.send(updatedUser);
+    } else {
+      res.status(422).send({ error: "Wrong password" });
     }
   } catch (error) {
     console.error(error);

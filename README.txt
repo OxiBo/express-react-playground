@@ -48,3 +48,7 @@ module.exports = (app) => {
 a. create a new project
 b. enable api - https://console.developers.google.com/apis/library?project=fullstackplayground&q=google%2B find google+ and enable
 c. create credentials
+
+9. Redux-form initialValues. To pass initial values, pass an object with values (key-value pairs (form field names)) as props to a form component(  for example <EditProfileForm
+          initialValues={userDetails}
+        />) and the form will be populated with the values

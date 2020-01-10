@@ -5,7 +5,6 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   local: {
     username: String,
-    email: String,
     password: String
   },
   google: {
@@ -22,13 +21,14 @@ const userSchema = new Schema({
   },
   createdAt: { type: Date, default: Date.now()},
   bio: {
+    email: { type: String, default: "Not specified" },
     avatar: {
       type: String,
       default:
         "https://images.unsplash.com/photo-1534944845791-f9e35a201bf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
     },
     occupation: { type: String, default: "Not specified" },
-    age: Number,
+    age: { type: String, default: "Not specified" },
     gender: { type: String, default: "Not specified" }
   }
 });

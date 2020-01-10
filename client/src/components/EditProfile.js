@@ -3,31 +3,37 @@ import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 // import { reduxForm, Field } from "redux-form";
 import EditProfileForm from "./EditProfileForm";
-
+import { editProfile } from "../actions";
+import  filterObj  from '../utils/objectFilter'
 class EditProfile extends Component {
-  onFormSubmit(values) {
-    console.log(values);
+
+
+  onFormSubmit = (values) => {
+    // filter form values to get rid of blank fields and prevent overriding values in the database
+   values = filterObj(values, field => field !== "")
+  //  console.log(filtered)
+    this.props.editProfile(values, this.props.current_user._id, this.props.history);
   }
   renderContent(userData) {
-    const { avatar, age, gender, occupation } = userData.bio;
-    let userDetails = { age, gender, occupation };
+    const { avatar, age, gender, occupation, email } = userData.bio;
+    let userDetails = { age, gender, occupation, email, avatar };
     let user = { avatar, createdAt: userData.createdAt };
     if (userData.google) {
       user.name = userData.google.name;
-      userDetails.email = userData.google.email;
+      // userDetails.email = userData.google.email;
     } else if (userData.facebook) {
       user.name = userData.facebook.name;
-      userDetails.email = userData.facebook.email;
+      // userDetails.email = userData.facebook.email;
     } else {
       user.name = userData.local.username;
-      userDetails.email = userData.local.email;
+      // userDetails.email = userData.local.email;
     }
     return (
       <div className="item">
         <EditProfileForm
           initialValues={userDetails}
           user={user}
-          userDetails={userDetails}
+          userDetails={{ avatar, occupation, email, age}}
           onFormSubmit={this.onFormSubmit}
         />
       </div>
@@ -35,6 +41,7 @@ class EditProfile extends Component {
   }
 
   render() {
+    // console.log(this.props)
     return (
       <div className="ui main text container segment">
         {this.props.current_user && (
@@ -57,7 +64,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(EditProfile); // destroyOnUnmount: false, in case if i needed form to be filled in with values after the forms has been submitted
+export default connect(mapStateToProps, { editProfile })(EditProfile); // destroyOnUnmount: false, in case if i needed form to be filled in with values after the forms has been submitted
 
 /*  <div className="ui main text container segment">
 {this.props.current_user ? (

@@ -1,25 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { fetchUser } from '../actions';
 
 class UserProfile extends Component {
+
+componentDidMount(){
+  this.props.fetchUser()
+}
+
   renderContent(userData) {
-    const { avatar, age, gender, occupation } = userData.bio;
-    let userDetails = { age, gender, occupation };
+    const { avatar, age, gender, occupation, email } = userData.bio;
+    let userDetails = { age, gender, occupation, email };
     let user = { avatar, createdAt: userData.createdAt };
     if (userData.google) {
       user.name = userData.google.name;
-      userDetails.email = userData.google.email;
+      // userDetails.email = userData.google.email;
     } else if (userData.facebook) {
       user.name = userData.facebook.name;
-      userDetails.email = userData.facebook.email;
+      // userDetails.email = userData.facebook.email;
     } else {
       user.name = userData.local.username;
-      userDetails.email = userData.local.email;
+     // userDetails.email = userData.local.email;
     }
 
-    console.log(user);
-    console.log(userDetails)
+    // console.log(user);
+    // console.log(userDetails)
     const { name, createdAt } = user;
     return (
       <div className="item">
@@ -31,7 +37,6 @@ class UserProfile extends Component {
               alt="profile picture"
             />
           </div>
-
           <div className="ui content segment">
             <h2 className="header">{name}</h2>
 
@@ -52,7 +57,7 @@ class UserProfile extends Component {
                 <div key={info[0]} className="description">
                   <span>{info[0].toUpperCase()}: </span>
                   <span className="ui header">
-                    {info[1] || "Not specified"}
+                    {info[1]}
                   </span>
                 </div>
               );
@@ -92,4 +97,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(UserProfile);
+export default connect(mapStateToProps, { fetchUser })(UserProfile);

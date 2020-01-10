@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom";
 import formFields from "./formFields";
 import validateEmail from "../../utils/validateEmail";
 import validateURL from "../../utils/validateURL";
+
+import renderRadioInput  from "../../utils/renderRadioInput";
 import { signup } from "../../actions";
 import axios from "axios";
 
@@ -101,6 +103,7 @@ class SignUpForm extends Component {
     });
   }
 
+  
   onSubmit = formValues => {
     this.props.signup(formValues, this.props.history, "signup");
   };
@@ -134,6 +137,20 @@ class SignUpForm extends Component {
               {this.renderUsernameError()}
 
               {this.renderFormFields()}
+
+              <div className="field">
+                <Field
+                  name="gender"
+                  label="Choose your gender"
+                  component={renderRadioInput}
+                  options={{
+                    male: "Male",
+                    female: "Female",
+                    "not-defined": "Prefer not to say"
+                  }}
+                />
+              </div>
+
               <button className="ui button primary">Sign Up</button>
               <a href="/" className="ui button orange">
                 Cancel
@@ -194,6 +211,11 @@ const validate = (formValues, props) => {
 
   if (formValues.occupation && formValues.occupation.length > 40) {
     errors.occupation = "Your occupation is too long";
+  }
+
+  // check if user filled in age field with a number
+  if (isNaN(formValues.age)) {
+    errors.age = "Your age have to be a number";
   }
 
   if (formValues.age && (formValues.age > 110 || formValues.age < 14)) {
