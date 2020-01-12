@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { fetchUser } from '../actions';
+import { fetchUser } from '../../actions';
 
 class UserProfile extends Component {
 
@@ -67,7 +67,7 @@ componentDidMount(){
 
         <div className="buttons">
           <a href="/home" className="ui secondary basic button">
-            <i className="arrow left icon"></i>Go Back or Go Home
+            <i className="arrow left icon"></i>Go Home
           </a>
           <Link
             className="ui orange right basic button"
@@ -83,9 +83,9 @@ componentDidMount(){
     // console.log(this.props.current_user);
     return (
       <div className="ui main text container segment show">
-        {this.props.current_user && (
+        {this.props.current_user ? (
           <>{this.renderContent(this.props.current_user)}</>
-        )}
+        ) : (<p>Loading....</p>)}
       </div>
     );
   }

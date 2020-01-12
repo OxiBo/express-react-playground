@@ -1,0 +1,38 @@
+section#about {
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 90%;
+    background: rgba($sectionsBackground, 0.9);
+    div.features {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+
+    i,
+    div.ftr {
+        display: inline-block;
+    }
+
+    i {
+        text-align: center;
+        padding: 15px;
+    }
+
+    div.ftr {
+        width: 80%;
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        padding: 10px;
+    }
+}

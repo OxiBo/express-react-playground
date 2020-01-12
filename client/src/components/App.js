@@ -3,8 +3,8 @@ import { Switch, BrowserRouter, Route } from "react-router-dom"; // use Switch t
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
 import MainComponent from "./MainComponent";
-import LoginComponent from "./LoginComponent";
-
+import LoginComponent from "./authComponents/LoginComponent";
+import NotFound from "./NotFound";//https://medium.com/@rose.espiritu1/creating-a-custom-404-notfound-page-with-react-routers-3cc9106de84
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -15,10 +15,14 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
+        
           <Switch>
             <Route exact path="/" component={LoginComponent} />
+            {/* <Route path='/not-found' component={NotFound} /> */}
             <Route component={MainComponent} />
+           
           </Switch>
+          {/* <Route path="*" component={NotFound} /> */}
         </BrowserRouter>
       </div>
     );

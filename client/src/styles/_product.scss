@@ -1,0 +1,107 @@
+section#prices {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    .product {
+        background: rgba($sectionsBackground, 0.9);
+        margin: 10px 5px;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 250px;
+        flex: 1 250px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        text-align: center;
+
+
+        div.prodName {
+            height: 50px;
+            background: $prodNameDivColor;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            h3 {
+                font-size: 1.5em;
+            }
+        }
+
+        div.image {
+            height: auto;
+            margin-bottom: auto;
+            img {
+                display: block;
+                width: 55%;
+                margin: 0 auto;
+            }
+        }
+
+        p:first-child {
+            font-weight: 600;
+            padding: 12px;
+        }
+
+        p.ingridients {
+            padding: 5px;
+            height: 50px;
+        }
+
+        h4 {
+            font-size: 2em;
+        }
+
+        button.order {
+            width: 35%;
+            height: 35px;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 10px auto;
+            background: $buttonOrderColor;
+            color: $sectionsBackground;
+            font-size: 0.8em;
+            outline-color: $buttonOrderOutline;
+        }
+        button.order:hover {
+            -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+
+
+
+
+// styling for semantic ui variant
+
+.product{
+    background: rgba($sectionsBackground, 0.9);
+    div.prod-name {
+        height: 65px;
+        background: $prodNameDivColor;
+       
+        display: flex;
+       
+        align-items: center;
+        justify-content: center;
+        h3.ui.huge.header{
+            font-size: 1.7em!important;
+            }
+    }
+}

@@ -1,4 +1,23 @@
+$menuColor: #FEE8D6;
+$textColor: #7B3F00;
+$h1Color: #5E2612;
+$sectionsBackground: #FFF5EE;
+$buttonOrderColor: #8B4500;
+$activeLinkColor: #FFDAB9;
+$inputOutlineColor: #CD3700;
+$menuButtonColor: #B87333;
+$submitButtonColor: #8B2500;
+$buttonOrderOutline: #FFDAB9;
+$prodNameDivColor: #FFDAB9;
 
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: $textColor;
+}
 
 body {
     background-color:lightsalmon;
@@ -6,4 +25,38 @@ body {
 
 .compt-content{
     margin-top: 80px;
+}
+
+
+.gradientLine {
+    grid-column: 1 / -1;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr auto 1fr;
+    grid-template-columns: 1fr auto 1fr;
+    grid-gap: 20px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.gradientLine:before {
+    display: block;
+    height: 7px;
+    content: "";
+    background: -webkit-gradient(linear, right top, left top, from($menuColor), to(transparent));
+    background: -webkit-linear-gradient(right, $menuColor, transparent);
+    background: -o-linear-gradient(right, $menuColor, transparent);
+    background: linear-gradient(to left, $menuColor, transparent);
+}
+
+.gradientLine:after {
+    display: block;
+    height: 7px;
+    content: "";
+    background: -webkit-gradient(linear, left top, right top, from($menuColor), to(transparent));
+    background: -webkit-linear-gradient(left, $menuColor, transparent);
+    background: -o-linear-gradient(left, $menuColor, transparent);
+    background: linear-gradient(to right, $menuColor, transparent);
 }

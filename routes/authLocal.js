@@ -2,7 +2,8 @@ const express = require("express"),
   router = express.Router(),
   bodyParser = require("body-parser"),
   mongoose = require("mongoose"),
-  passport = require("passport");
+  passport = require("passport"),
+  isLoggedIn = require("../middleware/isLoggedIn");
 require("../services/passportLocal");
 router.use(bodyParser.urlencoded({ extended: true }));
 const User = mongoose.model("users");
@@ -73,9 +74,9 @@ router.post("/api/login", async (req, res) => {
   }
 });
 
-router.patch("/api/edit-profile/:userId", async (req, res) => {
-  console.log(req.params.userId);
-  console.log(req.body);
+router.patch("/api/edit-profile/:userId", isLoggedIn, async (req, res) => {
+  // console.log(req.params.userId);
+  // console.log(req.body);
 
   // find user  in database
   try {

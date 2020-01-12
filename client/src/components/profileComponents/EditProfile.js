@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 // import { reduxForm, Field } from "redux-form";
 import EditProfileForm from "./EditProfileForm";
-import { editProfile } from "../actions";
-import  filterObj  from '../utils/objectFilter'
+import { editProfile } from "../../actions";
+import  filterObj  from '../../utils/objectFilter'
 class EditProfile extends Component {
 
 
@@ -44,12 +44,13 @@ class EditProfile extends Component {
     // console.log(this.props)
     return (
       <div className="ui main text container segment">
-        {this.props.current_user && (
+        
+        {this.props.current_user ? (
           <>
             <h2 className="ui huge header">Edit profile</h2>
             {this.renderContent(this.props.current_user)}
           </>
-        )}
+        ) : (<p>You need to be logged in to vew this page</p>)}
       </div>
     );
   }

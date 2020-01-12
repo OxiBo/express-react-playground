@@ -99,6 +99,16 @@ app.get("/api/logout", (req, res) => {
     
 });
 
+
+
+
+app.use((err, req, res, next) => {
+  if (!err) {
+    return next();
+  }
+  res.status(500).send('Internal Server Error');
+});
+
 // for production to serve index.html if unknown route requested(??)
 if (process.env.NODE_ENV === "production") {
   // Express will serve production assets like main.css  or main.js files
@@ -110,6 +120,11 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
+
+// // catch all errors
+// app.get('*', (req, res) => {
+//   res.status(404).send('404 Not Found');
+// });
 
 // app is running
 const PORT = process.env.PORT || 5050;

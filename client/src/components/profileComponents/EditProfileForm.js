@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 // import { connect } from 'react-redux';
-import validateEmail from "../utils/validateEmail";
-import renderRadioInput  from "../utils/renderRadioInput";
+import validateEmail from "../../utils/validateEmail";
+import renderRadioInput  from "../../utils/renderRadioInput";
 
 
 class EditProfileForm extends Component {
