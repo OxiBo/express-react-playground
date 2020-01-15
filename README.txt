@@ -52,3 +52,19 @@ c. create credentials
 9. Redux-form initialValues. To pass initial values, pass an object with values (key-value pairs (form field names)) as props to a form component(  for example <EditProfileForm
           initialValues={userDetails}
         />) and the form will be populated with the values
+
+
+10. For payments with Stripe: 
+   a. instal react-stripe-checkout for frontend
+   b. create component: 
+   with import - import StripeCheckout from "react-stripe-checkout";
+   <StripeCheckout
+            name="Pay for your order:"
+            description={name}
+            amount={this.calcPaymentAmount(price).total}
+            token={token => this.props.handleStripeToken(token)}
+            stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
+          >
+            <button className="ui button big primary left">Buy</button> // this used to make custom styled button
+          </StripeCheckout>
+    This component renders a button which opens a window where user enters credit card info and the prop - token is a callback function that can be used to send information about payment to backend api

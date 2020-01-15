@@ -86,7 +86,7 @@ class EditProfileForm extends Component {
           </div>
         </div>
         <div className="buttons">
-          <a href="/" className="ui button big right orange">
+          <a href={`/user-profile/${this.props.id}`} className="ui button big right orange">
             Cancel
           </a>
           <button className="ui button big primary">Submit</button>

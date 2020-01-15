@@ -35,6 +35,7 @@ class EditProfile extends Component {
           user={user}
           userDetails={{ avatar, occupation, email, age}}
           onFormSubmit={this.onFormSubmit}
+          id={this.props.current_user._id}
         />
       </div>
     );
@@ -50,7 +51,7 @@ class EditProfile extends Component {
             <h2 className="ui huge header">Edit profile</h2>
             {this.renderContent(this.props.current_user)}
           </>
-        ) : (<p>You need to be logged in to vew this page</p>)}
+        ) : (<p>You need to be logged in to view this page</p>)}
       </div>
     );
   }

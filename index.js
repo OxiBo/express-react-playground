@@ -6,11 +6,16 @@ const express = require("express"),
   cookieSession = require("cookie-session"),
   passport = require("passport"),
   mongoose = require("mongoose"),
+  // multer = require('multer'),
   app = express();
+
+  // const seedDB = require('./seedDB')
 
 // have to require the model before requiring passport
 require("./models/User");
+
 const User = mongoose.model("users");
+
 require("./services/passportLocal");
 
 app.use(cors()); // CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options. ; https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
@@ -34,11 +39,13 @@ app.use(passport.session()); // has to be put before requiring auth routes - req
 const localAuthRoutes = require("./routes/authLocal");
 const googleAuthRoutes = require("./routes/googleAuth");
 const facebookAuthRoutes = require("./routes/facebookAuth");
+const productRoutes = require("./routes/products");
 
 // require("./routes/authLocal")(app);
 app.use(localAuthRoutes);
 app.use(googleAuthRoutes);
 app.use(facebookAuthRoutes);
+app.use(productRoutes);
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -67,9 +74,17 @@ mongoose
     console.log("ERROR:", err.message);
   });
 
+
+  // seedDB()
+  // app.use(multer({ dest: `./uploads/`,
+  //   rename:  (fieldname, filename) => {
+  //     return filename;
+  //   },
+  //  }));
+
 app.get("/", (req, res) => {
   // console.log(req.user)
-  res.send("Hello, app!???");
+  res.send('test');
 });
 
 app.get("/api/current_user", (req, res) => {

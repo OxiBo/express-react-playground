@@ -1,5 +1,11 @@
 // import history from "../../history";
-import { FETCH_USER, AUTH_ERROR } from "./types";
+import {
+  FETCH_USER,
+  AUTH_ERROR,
+  FETCH_PRODUCTS,
+  FETCH_PRODUCT,
+  PRODUCT_ERROR
+} from "./types";
 import axios from "axios";
 
 export const fetchUser = () => async dispatch => {
@@ -34,7 +40,6 @@ export const signup = (formValues, history, type) => async dispatch => {
   }
 };
 
-
 // export const login = (formValues, history) => async dispatch => {
 //     try {
 //       // console.log(formValues);
@@ -54,7 +59,6 @@ export const signup = (formValues, history, type) => async dispatch => {
 //       history.push("/");
 //     }
 //   };
-  
 
 export const editProfile = (formValues, userId, history) => async dispatch => {
   try {
@@ -64,13 +68,48 @@ export const editProfile = (formValues, userId, history) => async dispatch => {
     //   dispatch({ type: AUTH_ERROR, payload: res.data.error });
     //   history.push(`/user-profile/${userId}`);
     // } else {
-      dispatch({ type: AUTH_ERROR, payload: "" });
-      dispatch({ type: FETCH_USER, payload: res.data });
-      history.push(`/user-profile/${userId}`);
+    dispatch({ type: AUTH_ERROR, payload: "" });
+    dispatch({ type: FETCH_USER, payload: res.data });
+    history.push(`/user-profile/${userId}`);
     // }
   } catch (error) {
     console.error(error);
     dispatch({ type: AUTH_ERROR, payload: error.response.data });
     history.push(`/user-profile/${userId}`);
+  }
+};
+
+export const fetchProducts = () => async dispatch => {
+  try {
+    const res = await axios.get("/api/products");
+    // console.log(res.data)
+    dispatch({ type: FETCH_PRODUCTS, payload: res.data });
+  } catch (error) {
+    console.error(error);
+    // dispatch({ type: AUTH_ERROR, payload: error.response.data });
+    // history.push('/home')
+  }
+};
+
+export const fetchProduct = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/order/${id}`);
+    console.log(res.data);
+    dispatch({ type: FETCH_PRODUCT, payload: res.data });
+  } catch (error) {
+    console.error(error);
+    dispatch({ type: PRODUCT_ERROR, payload: error.response.data });
+    // history.push('/home')
+  }
+};
+
+export const handleStripeToken = token => async dispatch => {
+  try {
+    const res = axios.post("/api/stripe-payment", token);
+    dispatch({ type: FETCH_USER, payload: res.data }); // ???
+    dispatch({ type: AUTH_ERROR, payload: "" });//???
+  } catch (error) {
+    console.error(error);
+    dispatch({ type: AUTH_ERROR, payload: error.response.data });
   }
 };

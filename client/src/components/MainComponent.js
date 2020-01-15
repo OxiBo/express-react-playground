@@ -11,6 +11,7 @@ import LogInForm from "./authComponents/LogInForm";
 import UserProfile from "./profileComponents/UserProfile";
 import EditProfile from "./profileComponents/EditProfile";
 import ProductsList from "./productsComponents/ProductsList";
+import OrderProduct from "./productsComponents/OrderProduct";
 // import NotFound from "./NotFound"; //https://medium.com/@rose.espiritu1/creating-a-custom-404-notfound-page-with-react-routers-3cc9106de84
 
 // const NotFoundRedirect = () => <Redirect to="/not-found" />;
@@ -38,6 +39,11 @@ class MainComponent extends Component {
                 exact
                 path="/edit-profile/:userid"
                 component={EditProfile}
+              />
+              <Route
+                exact
+                path="/order/:productId"
+                component={OrderProduct}
               />
               <Route exact path="/products" component={ProductsList} />
               {/* <Route component={NotFound} /> */}

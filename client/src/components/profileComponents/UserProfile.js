@@ -85,7 +85,7 @@ componentDidMount(){
       <div className="ui main text container segment show">
         {this.props.current_user ? (
           <>{this.renderContent(this.props.current_user)}</>
-        ) : (<p>Loading....</p>)}
+        ) : (<p>Error on our server side....</p>)}
       </div>
     );
   }
