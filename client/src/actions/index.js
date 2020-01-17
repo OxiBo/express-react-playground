@@ -4,7 +4,9 @@ import {
   AUTH_ERROR,
   FETCH_PRODUCTS,
   FETCH_PRODUCT,
-  PRODUCT_ERROR
+  PRODUCT_ERROR, 
+  FETCH_LAST_ORDER,
+  ORDER_ERROR,
 } from "./types";
 import axios from "axios";
 
@@ -93,8 +95,8 @@ export const fetchProducts = () => async dispatch => {
 
 export const fetchProduct = id => async dispatch => {
   try {
-    const res = await axios.get(`/api/order/${id}`);
-    console.log(res.data);
+    const res = await axios.get(`/api/products/${id}`);
+    // console.log(res.data);
     dispatch({ type: FETCH_PRODUCT, payload: res.data });
   } catch (error) {
     console.error(error);
@@ -103,13 +105,34 @@ export const fetchProduct = id => async dispatch => {
   }
 };
 
-export const handleStripeToken = token => async dispatch => {
+export const handleStripeToken = (
+  token,
+  name,
+  productId,
+  amount,
+  history
+) => async dispatch => {
   try {
-    const res = axios.post("/api/stripe-payment", token);
-    dispatch({ type: FETCH_USER, payload: res.data }); // ???
-    dispatch({ type: AUTH_ERROR, payload: "" });//???
+    // console.log(token)
+    // console.log(productId)
+
+    const res = await axios.post("/api/stripe-payment", {
+      token,
+      name,
+      productId,
+      amount
+    });
+    // console.log(res);
+    if (res.data.user) {
+      dispatch({ type: FETCH_USER, payload: res.data.user });
+    }
+    // console.log(res.data)
+    dispatch({ type: FETCH_LAST_ORDER, payload: res.data.newOrder }); // ???
+    // dispatch({ type: AUTH_ERROR, payload: "" });//???
+    history.push("/products");
   } catch (error) {
     console.error(error);
-    dispatch({ type: AUTH_ERROR, payload: error.response.data });
+    // dispatch({ type: AUTH_ERROR, payload: error.response.data });
+    dispatch({ type: ORDER_ERROR, payload: error.response.data });
   }
 };

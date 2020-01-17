@@ -28,12 +28,6 @@ passport.use(
           done(null, existingUser);
         } else {
           const newUser = await new User(
-            //   new User({
-            //     local: {
-            //       username,
-            //       password: generateHash(password)
-            //     }
-            //   })
             ({
               local: { username },
               bio: { occupation, age, email, avatar: avatarUrl }

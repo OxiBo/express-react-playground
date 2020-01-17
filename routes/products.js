@@ -19,7 +19,7 @@ router.get("/api/products", async (req, res) => {
 });
 
 
-router.get("/api/order/:productId", async (req, res) => {
+router.get("/api/products/:productId", async (req, res) => {
   
     try {
       const foundProduct = await Product.findById(req.params.productId);

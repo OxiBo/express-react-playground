@@ -54,7 +54,7 @@ c. create credentials
         />) and the form will be populated with the values
 
 
-10. For payments with Stripe: 
+10. For payments with Stripe on the frontend: 
    a. instal react-stripe-checkout for frontend
    b. create component: 
    with import - import StripeCheckout from "react-stripe-checkout";
@@ -68,3 +68,13 @@ c. create credentials
             <button className="ui button big primary left">Buy</button> // this used to make custom styled button
           </StripeCheckout>
     This component renders a button which opens a window where user enters credit card info and the prop - token is a callback function that can be used to send information about payment to backend api
+
+11. 10. For payments with Stripe on the backend:
+a. install stripe (npm install stripe --save) 
+b. 
+
+
+
+** req.user access current user model - https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/7605182#content and req.user.save() ---> explained in the video
+
+** update mongoose model (subtract number of something) - https://stackoverflow.com/questions/48740754/how-to-subtract-from-current-field-in-mongodb-with-update-using-aggregation-pipe

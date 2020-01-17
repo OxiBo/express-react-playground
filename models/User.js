@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-  bcrypt = require("bcrypt"); // https://medium.com/@adamlehrer/get-your-passport-through-security-with-passport-js-bcrypt-c44f70ac7159
+bcrypt = require("bcrypt"); // https://medium.com/@adamlehrer/get-your-passport-through-security-with-passport-js-bcrypt-c44f70ac7159
 const { Schema } = mongoose;
-
+// require("./Order");
+// const Order = mongoose.model("orders");
 const userSchema = new Schema({
   local: {
     username: String,
@@ -19,7 +20,7 @@ const userSchema = new Schema({
     name: String,
     token: String
   },
-  createdAt: { type: Date, default: Date.now()},
+  createdAt: { type: Date, default: Date.now() },
   bio: {
     email: { type: String, default: "Not specified" },
     avatar: {
@@ -30,7 +31,8 @@ const userSchema = new Schema({
     occupation: { type: String, default: "Not specified" },
     age: { type: String, default: "Not specified" },
     gender: { type: String, default: "Not specified" }
-  }
+  },
+  orders: [{ type: Schema.Types.ObjectId, ref: "Order" }]
 });
 
 // generating a hash
@@ -39,7 +41,7 @@ userSchema.methods.generateHash = password => {
 };
 
 // checking if password is valid
-userSchema.methods.validPassword = function (password) {
+userSchema.methods.validPassword = function(password) {
   // console.log(this)
   return bcrypt.compareSync(password, this.local.password);
 };

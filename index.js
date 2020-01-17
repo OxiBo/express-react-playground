@@ -14,6 +14,8 @@ const express = require("express"),
 // have to require the model before requiring passport
 require("./models/User");
 
+require("./models/Order");
+
 const User = mongoose.model("users");
 
 require("./services/passportLocal");
@@ -40,12 +42,14 @@ const localAuthRoutes = require("./routes/authLocal");
 const googleAuthRoutes = require("./routes/googleAuth");
 const facebookAuthRoutes = require("./routes/facebookAuth");
 const productRoutes = require("./routes/products");
+const billingRoutes = require("./routes/billing");
 
 // require("./routes/authLocal")(app);
 app.use(localAuthRoutes);
 app.use(googleAuthRoutes);
 app.use(facebookAuthRoutes);
 app.use(productRoutes);
+app.use(billingRoutes);
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

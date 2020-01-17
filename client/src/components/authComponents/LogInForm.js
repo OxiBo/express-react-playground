@@ -62,7 +62,7 @@ class LogInForm extends Component {
             <h2>Log In</h2>
             {this.props.authError && (
               <div className="ui error message">
-                <div className="header">{this.props.authError.error}</div>
+                <div className="header">{this.props.authError.error && <p>Server error</p>}</div>
               </div>
             )}
             <form

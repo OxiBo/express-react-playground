@@ -10,9 +10,6 @@ class OrderProduct extends Component {
     // console.log(this.props.match.params)
   }
 
-  taxCalc = (amount, tax = 8) => {
-    return (amount * (tax / 100)) / 100;
-  };
 
   calcPaymentAmount = (amount, tax = 8) => {
     const taxes = amount * (tax / 100);
@@ -23,7 +20,7 @@ class OrderProduct extends Component {
   };
 
   renderContent() {
-    const { name, imageURL, ingredients, price } = this.props.product;
+    const { name, _id, imageURL, ingredients, price } = this.props.product;
     return (
       <div className="ui items">
         <div className="item">
@@ -85,7 +82,7 @@ class OrderProduct extends Component {
             name="Pay for your order:"
             description={name}
             amount={this.calcPaymentAmount(price).total}
-            token={token => this.props.handleStripeToken(token)}
+            token={token => this.props.handleStripeToken(token, name, _id, this.calcPaymentAmount(price).total, this.props.history)}
             stripeKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}
           >
             <button className="ui button big primary left">Buy</button>
@@ -95,6 +92,7 @@ class OrderProduct extends Component {
     );
   }
   render() {
+      console.log(this.props)
     return (
       <div className="ui main text container segment">
         {this.props.product ? (
