@@ -223,7 +223,7 @@ export const fetchReviews = () => async (dispatch, getState) => {
 export const fetchReview = (id, history) => async dispatch => {
   try {
     const res = await axios.get(`/api/reviews/${id}`);
-    console.log(res.data)
+    // console.log(res.data)
     dispatch({ type: FETCH_REVIEW, payload: res.data });
   } catch (error) {
     console.error(error);

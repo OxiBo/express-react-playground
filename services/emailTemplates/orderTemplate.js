@@ -1,3 +1,5 @@
+const keys = require("../../config/keys");
+
 module.exports = (orderId, name, amount, deliveryInfo) => {
   // console.log(process.env.REDIRECT_DOMAIN)
   return `
@@ -16,7 +18,7 @@ module.exports = (orderId, name, amount, deliveryInfo) => {
             <p>
               Click the link below to confirm your order
             </p>
-                <a href="${process.env.REDIRECT_DOMAIN}/api/stripe-payment/${orderId}/confirm">Confirm</a>
+                <a href="${keys.redirectDomain}/api/stripe-payment/${orderId}/confirm">Confirm</a>
             </div>
         </div>
 </body>

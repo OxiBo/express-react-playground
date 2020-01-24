@@ -41,7 +41,7 @@ class ProductTestingDashboard extends Component {
               <a href={`${contact.profileUrl}`} target="_blank" rel="noopener noreferrer">
                 {contact.name}
               </a>
-              , {contact.email}
+              , <br/>{contact.email}
             </td>
             <td>{new Date(orderDate).toLocaleDateString()}</td>
             <td>

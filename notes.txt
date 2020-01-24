@@ -52,7 +52,10 @@ c. create credentials
 9. Redux-form initialValues. To pass initial values, pass an object with values (key-value pairs (form field names)) as props to a form component(  for example <EditProfileForm
           initialValues={userDetails}
         />) and the form will be populated with the values
-
+note: if you have a form and use it in a few places you need to use different names form respective forms as a prop (if you need to use initial values in at least one of them, like  <ReviewNewForm
+        form="editReviewForm" 
+        .... - other props 
+        />)
 
 10. For payments with Stripe on the frontend: 
    a. instal react-stripe-checkout for frontend
@@ -77,11 +80,21 @@ b. create a charge object
 
 a.  create sendgrid account and get API keys;
 b. npm install --save sendgrid
-
+c.
 d. use local tunnel for tracking click and open and other events, setup instructions - https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/17196996#overview
 
+
+13. Deploy with heroku:
+a. add node and npm current versions to package.json ("engines": {
+    "node": "8.10.0",
+    "npm": "6.4.1"
+  },)
+  b. add this script to scripts in package.json -  "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  c. 
 ** req.user access current user model - https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/7605182#content and req.user.save() ---> explained in the video
 
 ** update mongoose model (subtract number of something) - https://stackoverflow.com/questions/48740754/how-to-subtract-from-current-field-in-mongodb-with-update-using-aggregation-pipe
 
 ** react-tostify styling - https://stackoverflow.com/questions/53295656/simplest-way-to-adjust-background-color-of-a-react-toastify-toast
+
+** api error status codes - https://kinsta.com/blog/http-status-codes/

@@ -1,7 +1,8 @@
-require("dotenv").config();
+// require("dotenv").config();
 
 const express = require("express"),
   cors = require("cors"),
+  keys = require("./config/keys"),
   bodyParser = require("body-parser"),
   cookieSession = require("cookie-session"),
   passport = require("passport"),
@@ -13,7 +14,6 @@ const express = require("express"),
 
 // have to require the model before requiring passport
 require("./models/User");
-
 require("./models/Order");
 require("./models/Review");
 
@@ -68,7 +68,7 @@ passport.deserializeUser((id, done) => {
 
 // database configuration
 const dataBaseURI =
-  process.env.MONGO_URI || "mongodb://localhost:27017/express-react-playground";
+  keys.mongoURI;
 mongoose
   .connect(dataBaseURI, {
     useUnifiedTopology: true,

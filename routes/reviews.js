@@ -56,7 +56,6 @@ router.post("/api/reviews", isLoggedIn, async (req, res) => {
 router.get("/api/reviews/:reviewId", isLoggedIn, async (req, res) => {
   try {
     const foundReview = await Review.findById(req.params.reviewId);
-    console.log(foundReview)
     res.send(foundReview);
     // console.log(reviews)
   } catch (error) {

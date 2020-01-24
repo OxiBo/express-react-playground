@@ -1,6 +1,7 @@
 const passport = require("passport"),
   GoogleStrategy = require("passport-google-oauth20").Strategy,
-  mongoose = require("mongoose");
+  mongoose = require("mongoose"),
+  keys = require("../config/keys");
 //   User = require("../models/User");
 const User = mongoose.model("users");
 
@@ -18,8 +19,8 @@ passport.use(
   "google",
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_API_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_API_CLIENT_SECRET,
+      clientID: keys.googleClientID,
+      clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback",
       proxy: true // to fix http and http problem when deploying
     },

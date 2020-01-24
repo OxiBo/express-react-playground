@@ -6,7 +6,7 @@
 
 const passport = require("passport"),
   FacebookStrategy = require("passport-facebook").Strategy,
-  //   axios = require("axios"),
+  keys = require("../config/keys"),
   mongoose = require("mongoose"),
   User = require("../models/User");
 // const User = mongoose.model("users");
@@ -27,9 +27,9 @@ passport.use(
   "facebook",
   new FacebookStrategy(
     {
-      clientID: process.env.FACEBOOK_APP_ID,
-      clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: process.env.FACEBOOK_CALLBACK_URL || "http://localhost:3030/auth/facebook/callback", // https://www.twilio.com/blog/facebook-oauth-login-node-js-app-passport-js
+      clientID: keys.facebookAPIId,
+      clientSecret: keys.facebookAPISecret,
+      callbackURL: keys.facebookCallBackURL, // https://www.twilio.com/blog/facebook-oauth-login-node-js-app-passport-js
       auth_type: "reauthenticate",
       profileFields: ['displayName', 'email']
     },

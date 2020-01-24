@@ -14,9 +14,10 @@ $prodNameDivColor: #FFDAB9;
 * {
     margin: 0;
     padding: 0;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: $textColor;
+    // word-break: break-all;
+    word-break: break-word;
 }
 
 body {
