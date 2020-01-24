@@ -67,10 +67,8 @@ passport.deserializeUser((id, done) => {
 
 
 // database configuration
-const dataBaseURI =
-  keys.mongoURI;
 mongoose
-  .connect(dataBaseURI, {
+  .connect(keys.mongoURI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false
