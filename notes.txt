@@ -90,7 +90,12 @@ a. add node and npm current versions to package.json ("engines": {
     "npm": "6.4.1"
   },)
   b. add this script to scripts in package.json -  "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  c. 
+  c. instal heroku cli if you did not already
+  d. run heroku create (and a name for your app if you want certain name)
+  e. run git remote add heroku --- link --- (the one with git you get after running 'heroku create')
+  f. run  - git push heroku master
+
+
 ** req.user access current user model - https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/7605182#content and req.user.save() ---> explained in the video
 
 ** update mongoose model (subtract number of something) - https://stackoverflow.com/questions/48740754/how-to-subtract-from-current-field-in-mongodb-with-update-using-aggregation-pipe
