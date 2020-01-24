@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import PageNotFound from '../assets/images/PageNotFound.png';
 const NotFound = () => (
 <div>
-<img src={PageNotFound} style={{ height: 400, display: 'block', margin: 'auto', position: 'relative' }} />
+<img src={PageNotFound} alt="" style={{ height: 400, display: 'block', margin: 'auto', position: 'relative' }} />
 <center><Link to="/home">Return to Home Page</Link></center>
 </div>
 );

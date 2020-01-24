@@ -14,11 +14,10 @@ export default (state = defaultOrderState, action) => {
         order: action.payload,
         error: ""
       };
-
+//?????
     case ORDER_ERROR:
       return {
         ...state,
-        error: action.payload
       };
     default:
       return state;

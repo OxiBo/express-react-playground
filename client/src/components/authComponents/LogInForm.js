@@ -62,7 +62,7 @@ class LogInForm extends Component {
             <h2>Log In</h2>
             {this.props.authError && (
               <div className="ui error message">
-                <div className="header">{this.props.authError.error && <p>Server error</p>}</div>
+                <div className="header">{this.props.authError.error}</div>
               </div>
             )}
             <form
@@ -105,9 +105,9 @@ class LogInForm extends Component {
 const validate = (formValues, props) => {
   const errors = {};
 
-  if (!formValues.email) {
-    // run if the user did not enter your email
-    errors.email = "You must enter your email";
+  if (!formValues.username) {
+    // run if the user did not enter your username
+    errors.username = "You must enter your username";
   }
 
   if (!formValues.password) {

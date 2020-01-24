@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import { fetchUser } from "../actions";
-class Header extends Component {
-  // componentDidMount() {
-  //   this.props.fetchUser();
-  // }
 
+// flesh messages
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+
+class Header extends Component {
   render() {
     // console.log(this.props.auth.user.local.username);
     // console.log(this.props.current_user.local);
-// const { local, google, facebook } = this.props.auth.user;
+    // const { local, google, facebook } = this.props.auth.user;
     return (
       <>
         <nav>
@@ -25,31 +25,46 @@ class Header extends Component {
             </div>
             <div className="right menu">
               {this.props.auth.user ? (
-                <>
-                <Link to={`/user-profile/${this.props.auth.user._id}`} className="ui item">
-                <i className="address card outline icon"></i>
-                  View Profile
-                </Link>
-                  <a className="ui item">
+                <> 
+                 <Link
+                    to={`/product-testing`}
+                    className="ui item"
+                  >
+                  <i className="amazon icon"></i>
+                   Testing
+                  </Link>
+                  <Link
+                    to={`/user-profile/${this.props.auth.user._id}`}
+                    className="ui item"
+                  >
+                    <i className="address card outline icon"></i>
+                    View Profile
+                  </Link>
+                  <a className="ui item" href="#">
                     {/* {this.props.auth.user.local.username || this.props.auth.user.google.name} */}
-                    Logged in as { this.props.auth.user.google && this.props.auth.user.google.name} { this.props.auth.user.local && this.props.auth.user.local.username} 
-                    { this.props.auth.user.facebook && this.props.auth.user.facebook.name} 
+                    Logged in as&nbsp;
+                    {this.props.auth.user.google &&
+                      this.props.auth.user.google.name}
+                    {this.props.auth.user.local &&
+                      this.props.auth.user.local.username}
+                    {this.props.auth.user.facebook &&
+                      this.props.auth.user.facebook.name}
                   </a>
-                  <a href="/api/logout" className="ui item"><i className="sign out icon"></i>
+                  <a href="/api/logout" className="ui item">
+                    <i className="sign out icon"></i>
                     Log Out
                   </a>
                 </>
               ) : (
                 <>
-                <Link to="/" className="ui item">
-                  Sign In
-                </Link>
+                  <Link to="/" className="ui item">
+                    Sign In
+                  </Link>
                 </>
               )}
             </div>
           </div>
         </nav>
-        {/* {this.props.children} */}
       </>
     );
   }

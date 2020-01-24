@@ -6,3 +6,7 @@ export const FETCH_PRODUCT = 'fetch_product';
 export const PRODUCT_ERROR = 'product_error';
 export const FETCH_LAST_ORDER = 'fetch_last_order';
 export const ORDER_ERROR = 'order_error';
+export const FETCH_ORDERS= 'fetch_orders';
+export const FETCH_REVIEWS= 'fetch_reviews';
+export const FETCH_REVIEW= 'fetch_review';
+export const REVIEWS_ERROR= 'reviews_ERROR';

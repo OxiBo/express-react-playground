@@ -25,7 +25,7 @@ class OrderProduct extends Component {
       <div className="ui items">
         <div className="item">
           <div className="ui medium rounded image">
-            <img src={`/${imageURL}`} />
+            <img src={`/${imageURL}`} alt=""/>
           </div>
           <div className="content">
             <h1 className="huge header">{name}</h1>
@@ -92,7 +92,7 @@ class OrderProduct extends Component {
     );
   }
   render() {
-      console.log(this.props)
+      // console.log(this.props)
     return (
       <div className="ui main text container segment">
         {this.props.product ? (

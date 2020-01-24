@@ -60,3 +60,13 @@ body {
     background: -o-linear-gradient(left, $menuColor, transparent);
     background: linear-gradient(to right, $menuColor, transparent);
 }
+
+a{
+i{
+    color: beige;
+}
+}
+
+table a i {
+    color: $textColor;
+}

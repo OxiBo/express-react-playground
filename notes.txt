@@ -69,12 +69,19 @@ c. create credentials
           </StripeCheckout>
     This component renders a button which opens a window where user enters credit card info and the prop - token is a callback function that can be used to send information about payment to backend api
 
-11. 10. For payments with Stripe on the backend:
+11. For payments with Stripe on the backend:
 a. install stripe (npm install stripe --save) 
-b. 
+b. create a charge object
 
+12. Sending email:
 
+a.  create sendgrid account and get API keys;
+b. npm install --save sendgrid
+
+d. use local tunnel for tracking click and open and other events, setup instructions - https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/17196996#overview
 
 ** req.user access current user model - https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/7605182#content and req.user.save() ---> explained in the video
 
 ** update mongoose model (subtract number of something) - https://stackoverflow.com/questions/48740754/how-to-subtract-from-current-field-in-mongodb-with-update-using-aggregation-pipe
+
+** react-tostify styling - https://stackoverflow.com/questions/53295656/simplest-way-to-adjust-background-color-of-a-react-toastify-toast

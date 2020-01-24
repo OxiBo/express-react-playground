@@ -1,8 +1,9 @@
-import { FETCH_USER, AUTH_ERROR } from "../actions/types";
+import { FETCH_USER, FETCH_ORDERS, AUTH_ERROR } from "../actions/types";
 
 const defaultAuthState = {
     user: null,
-    error: ""
+    error: "",
+    orders: null
 };
 
 export default (state = defaultAuthState, action) => {
@@ -11,12 +12,17 @@ export default (state = defaultAuthState, action) => {
     case FETCH_USER:
       return {
         ...state,
-        user: action.payload || false
+        user: action.payload || null
+      };
+      case FETCH_ORDERS:
+      return {
+        ...state,
+        orders: action.payload || null
       };
     case AUTH_ERROR:
       return {
         ...state,
-        error: action.payload || false
+        error: action.payload || null
       };
       
     default:

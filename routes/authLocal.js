@@ -6,10 +6,14 @@ const express = require("express"),
   isLoggedIn = require("../middleware/isLoggedIn");
 require("../services/passportLocal");
 router.use(bodyParser.urlencoded({ extended: true }));
-const User = mongoose.model("users");
+require("../models/Order");
+require("../models/Product");
+const User = mongoose.model("users"),
+  Order = mongoose.model("orders"),
+  Product = mongoose.model("products");
 
 router.post("/api/signup", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   // check if username exist in database
   try {
     const foundUser = await User.findOne({
@@ -74,20 +78,42 @@ router.post("/api/login", async (req, res) => {
   }
 });
 
+router.get("/api/orders/:userId", isLoggedIn, async (req, res) => {
+  // console.log(req.params.userId);
+  // console.log(req.user);
+  try {
+    const user = await User.findById(req.params.userId)
+      .populate({
+        path: "orders",
+        model: Order,
+        populate: {
+          path: "items",
+          model: Product
+        }
+      }) //https://stackoverflow.com/questions/33072212/mongoose-error-schema-hasnt-been-registered-for-model-when-populate nested populate - //https://stackoverflow.com/questions/33072212/mongoose-error-schema-hasnt-been-registered-for-model-when-populate
+      .exec();
+// console.log(orders)
+    res.send(user.orders);
+  } catch (error) {
+    console.error(error);
+    res.status(422).send({"error": "Server problems"});
+  }
+});
+
 router.patch("/api/edit-profile/:userId", isLoggedIn, async (req, res) => {
   // console.log(req.params.userId);
   // console.log(req.body);
 
   // find user  in database
   try {
-    const { age, gender, occupation, email } = req.body;
+    // const { age, gender, occupation, email } = req.body;
     const updatedUser = await User.findByIdAndUpdate(req.params.userId, {
       bio: req.body
     });
     // const test = await User.findById(req.params.userId)
 
     // console.log(test)
-    console.log(updatedUser)
+    // console.log(updatedUser);
     if (updatedUser) {
       res.send(updatedUser);
     } else {

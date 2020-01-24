@@ -51,7 +51,7 @@ class EditProfileForm extends Component {
             <img
               className="ui medium description  image"
               src={avatar}
-              alt="profile picture"
+              alt=""
             />
           </div>
 

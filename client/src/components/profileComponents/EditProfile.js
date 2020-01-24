@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 // import { reduxForm, Field } from "redux-form";
 import EditProfileForm from "./EditProfileForm";
 import { editProfile } from "../../actions";
-import  filterObj  from '../../utils/objectFilter'
+import  filterObj  from '../../utils/objectFilter';
+
 class EditProfile extends Component {
 
 

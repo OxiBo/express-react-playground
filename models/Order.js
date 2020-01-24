@@ -8,7 +8,10 @@ const orderSchema = new Schema({
   items: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   createdAt: { type: Date, default: new Date },
 //   count: {type: Number, default: 1},
-  _user: { type: Schema.Types.ObjectId, ref: "User" }
+  _user: { type: Schema.Types.ObjectId, ref: "User" },
+  email: String,
+  confirmed: { type: Boolean, default: false },
+  confirmedAt:  Date
 });
 
 module.exports = mongoose.model("orders", orderSchema);

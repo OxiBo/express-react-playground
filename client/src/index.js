@@ -4,10 +4,15 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
 
+
 import './styles/index.scss';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import reducers from "./reducers";
+
+
+// import axios from 'axios';
+// window.axios = axios;
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

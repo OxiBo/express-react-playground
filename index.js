@@ -15,6 +15,7 @@ const express = require("express"),
 require("./models/User");
 
 require("./models/Order");
+require("./models/Review");
 
 const User = mongoose.model("users");
 
@@ -43,6 +44,7 @@ const googleAuthRoutes = require("./routes/googleAuth");
 const facebookAuthRoutes = require("./routes/facebookAuth");
 const productRoutes = require("./routes/products");
 const billingRoutes = require("./routes/billing");
+const reviewsRoutes = require("./routes/reviews");
 
 // require("./routes/authLocal")(app);
 app.use(localAuthRoutes);
@@ -50,6 +52,8 @@ app.use(googleAuthRoutes);
 app.use(facebookAuthRoutes);
 app.use(productRoutes);
 app.use(billingRoutes);
+app.use(reviewsRoutes);
+
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

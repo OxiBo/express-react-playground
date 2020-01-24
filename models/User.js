@@ -32,7 +32,8 @@ const userSchema = new Schema({
     age: { type: String, default: "Not specified" },
     gender: { type: String, default: "Not specified" }
   },
-  orders: [{ type: Schema.Types.ObjectId, ref: "Order" }]
+  orders: [{ type: Schema.Types.ObjectId, ref: "Order" }], 
+  reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }], 
 });
 
 // generating a hash
