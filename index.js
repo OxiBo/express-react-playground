@@ -10,7 +10,7 @@ const express = require("express"),
   // multer = require('multer'),
   app = express();
 
-  // const seedDB = require('./seedDB')
+const seedDB = require("./seedDB");
 
 // have to require the model before requiring passport
 require("./models/User");
@@ -54,7 +54,6 @@ app.use(productRoutes);
 app.use(billingRoutes);
 app.use(reviewsRoutes);
 
-
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -64,7 +63,6 @@ passport.deserializeUser((id, done) => {
     done(err, user);
   });
 });
-
 
 // database configuration
 mongoose
@@ -80,14 +78,13 @@ mongoose
     console.log("ERROR:", err.message);
   });
 
+seedDB();
 
-  // seedDB()
-  // app.use(multer({ dest: `./uploads/`,
-  //   rename:  (fieldname, filename) => {
-  //     return filename;
-  //   },
-  //  }));
-
+// app.use(multer({ dest: `./uploads/`,
+//   rename:  (fieldname, filename) => {
+//     return filename;
+//   },
+//  }));
 
 app.get("/api/current_user", (req, res) => {
   //console.log(req.session)
@@ -111,14 +108,10 @@ app.get("/api/logout", (req, res) => {
   // res.redirect("/");
   // console.log(req.user);
   // res.send(req.user);
-  res.redirect('/');
-  
-    
+  res.redirect("/");
 });
 
-
-
-// commenting this out to try loging in with google and facebook because for now i only get 500 error
+// commenting this out to try logging in with google and facebook because for now i only get 500 error
 // app.use((err, req, res, next) => {
 //   if (!err) {
 //     return next();
