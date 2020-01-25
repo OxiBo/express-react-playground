@@ -89,6 +89,7 @@ d. use local tunnel for tracking click and open and other events, setup instruct
 
 
 13. Deploy with heroku:
+note ** - to run heroku console - heroku run bash
 a. add node and npm current versions to package.json ("engines": {
     "node": "8.10.0",
     "npm": "6.4.1"

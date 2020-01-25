@@ -118,13 +118,13 @@ app.get("/api/logout", (req, res) => {
 
 
 
-
-app.use((err, req, res, next) => {
-  if (!err) {
-    return next();
-  }
-  res.status(500).send('Internal Server Error');
-});
+// commenting this out to try loging in with google and facebook because for now i only get 500 error
+// app.use((err, req, res, next) => {
+//   if (!err) {
+//     return next();
+//   }
+//   res.status(500).send('Internal Server Error');
+// });
 
 // for production to serve index.html if unknown route requested(??)
 if (process.env.NODE_ENV === "production") {
