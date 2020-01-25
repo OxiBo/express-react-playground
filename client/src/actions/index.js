@@ -122,7 +122,7 @@ export const signup = (formValues, history, type) => async dispatch => {
 export const editProfile = (formValues, userId, history) => async dispatch => {
   try {
     const res = await axios.patch(`/api/edit-profile/${userId}`, formValues);
-    console.log(res);
+    // console.log(res);
     // if (res.data.error) {
     //   dispatch({ type: AUTH_ERROR, payload: res.data.error });
     //   history.push(`/user-profile/${userId}`);
