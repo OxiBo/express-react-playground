@@ -10,7 +10,7 @@ const express = require("express"),
   // multer = require('multer'),
   app = express();
 
-const seedDB = require("./seedDB");
+// const seedDB = require("./seedDB");
 
 // have to require the model before requiring passport
 require("./models/User");
@@ -78,7 +78,7 @@ mongoose
     console.log("ERROR:", err.message);
   });
 
-seedDB();
+// seedDB();
 
 // app.use(multer({ dest: `./uploads/`,
 //   rename:  (fieldname, filename) => {
