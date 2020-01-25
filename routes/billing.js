@@ -1,5 +1,6 @@
 const express = require("express"),
-  stripe = require("stripe")(process.env.STRIPE_SECRET_KEY),
+keys = require("../config/keys"),
+  stripe = require("stripe")(keys.stripeSecretKey),
   mongoose = require("mongoose"),
   Mailer = require("../services/Mailer"),
   orderTemplate = require("../services/emailTemplates/orderTemplate"),
