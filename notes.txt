@@ -49,6 +49,10 @@ a. create a new project
 b. enable api - https://console.developers.google.com/apis/library?project=fullstackplayground&q=google%2B find google+ and enable
 c. create credentials
 
+10. facebook api - https://developers.facebook.com/docs/graph-api/using-graph-api/  
+(https://developers.facebook.com/apps/215168196316057/dashboard/)
+
+
 9. Redux-form initialValues. To pass initial values, pass an object with values (key-value pairs (form field names)) as props to a form component(  for example <EditProfileForm
           initialValues={userDetails}
         />) and the form will be populated with the values
@@ -93,8 +97,10 @@ a. add node and npm current versions to package.json ("engines": {
   c. instal heroku cli if you did not already
   d. run heroku create (and a name for your app if you want certain name)
   e. run git remote add heroku --- link --- (the one with git you get after running 'heroku create')
-  f. run  - git push heroku master
+  f. run  - git push heroku master, to check of deployed run - heroku open
 
+13* - redeploy:
+a.  after saving all changes with git - git push heroku master
 
 ** req.user access current user model - https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/7605182#content and req.user.save() ---> explained in the video
 
@@ -103,3 +109,5 @@ a. add node and npm current versions to package.json ("engines": {
 ** react-tostify styling - https://stackoverflow.com/questions/53295656/simplest-way-to-adjust-background-color-of-a-react-toastify-toast
 
 ** api error status codes - https://kinsta.com/blog/http-status-codes/
+
+

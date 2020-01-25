@@ -88,10 +88,6 @@ mongoose
   //   },
   //  }));
 
-app.get("/", (req, res) => {
-  // console.log(req.user)
-  res.send('test');
-});
 
 app.get("/api/current_user", (req, res) => {
   //console.log(req.session)
