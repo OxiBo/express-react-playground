@@ -30,6 +30,7 @@ passport.use(
 
       if (existingUser) {
         // we have the user in our database
+        // console.log(existingUser)
         return done(null, existingUser);
       }
       // create a new user, we don't have the user in our database

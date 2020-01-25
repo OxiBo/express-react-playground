@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { css } from "glamor";
 import Header from "./Header";
+import Footer from "./Footer";
 import Landing from "./Landing";
 // import Dashboard from "./Dashboard";
 import SignUpForm from "./authComponents/SignUpForm";
@@ -33,7 +34,7 @@ class MainComponent extends Component {
 
   render() {
     return (
-      <div>
+      <div className='layout'>
         {this.props.message && this.notify()}{/* <BrowserRouter>      */}
         <Header />
       
@@ -49,7 +50,7 @@ class MainComponent extends Component {
           pauseOnHover
         />
         {/* <Switch> */}
-        <div className="ui container">
+        <div className="ui container main-container">
           <Route exact path="/home" component={Landing} />
           <Route exact path="/signup" component={SignUpForm} />
           <Route exact path="/login" component={LogInForm} />
@@ -64,6 +65,7 @@ class MainComponent extends Component {
         </div>
         {/* </Switch> */}
         {/* </BrowserRouter> */}
+        <Footer />
       </div>
     );
   }

@@ -85,6 +85,7 @@ class ProductTestingDashboard extends Component {
               </div>
             </div>
             <div className="ui main">
+              {this.props.reviewList.length ? (
               <table className="ui celled stripped table">
                 <thead>
                   <tr className="center aligned">
@@ -100,7 +101,7 @@ class ProductTestingDashboard extends Component {
                 <tbody>
                   {this.props.reviewList && this.renderReviewList()}
                 </tbody>
-              </table>
+              </table>) : (<div className="ui segment center aligned "><h4>You don't have any tests in your list yet</h4></div>)}
             </div>
             
           </>

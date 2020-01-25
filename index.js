@@ -31,7 +31,7 @@ app.use(
   cookieSession({
     name: "session", // default value
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    keys: [process.env.COOKIE_KEY]
+    keys: [keys.cookieKey]
   })
 );
 
@@ -87,25 +87,15 @@ mongoose
 //  }));
 
 app.get("/api/current_user", (req, res) => {
-  //console.log(req.session)
+  // console.log(req.session)
+  // console.log(req.body)
   res.send(req.user);
 });
 
 // logout route
 app.get("/api/logout", (req, res) => {
-  // https://developers.facebook.com/docs/facebook-login/reauthentication/
-  // if (req.user.facebook.id) {
-  //   try {
-  //     await axios.delete(
-  //       `https://graph.facebook.com/${req.user.facebook.id}/permissions?access_token=${req.user.facebook.token}`
-  //     );
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
   req.logout();
-  // req.flash("success", "You are logged out");
-  // res.redirect("/");
+ 
   // console.log(req.user);
   // res.send(req.user);
   res.redirect("/");
