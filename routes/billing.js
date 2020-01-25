@@ -1,5 +1,5 @@
 const express = require("express"),
-keys = require("../config/keys"),
+  keys = require("../config/keys"),
   stripe = require("stripe")(keys.stripeSecretKey),
   mongoose = require("mongoose"),
   Mailer = require("../services/Mailer"),
@@ -107,22 +107,21 @@ router.post("/api/order/webhooks", (req, res) => {
   try {
     const p = new Path("/api/stripe-payment/:orderId/confirm");
 
-    const newArr = req.body
-      .map(({ url }) => {
-        const match = p.test(new URL(url).pathname);
-        if (match) {
-          return { orderId: match.orderId };
-        }
-      });
-      console.log(newArr);
-      newArr.forEach(async ({ orderId }) => {
-        console.log(orderId)
-        const updatedOrder = await Order.updateOne(
-          { _id: orderId, confirmed: false },
-          { $set: { confirmed: true }, confirmedAt: new Date() }
-        ).exec();
-        console.log(updatedOrder);
-      });
+    const newArr = req.body.map(({ url }) => {
+      const match = p.test(new URL(url).pathname);
+      if (match) {
+        return { orderId: match.orderId };
+      }
+    });
+    // console.log(newArr);
+    newArr.forEach(async ({ orderId }) => {
+      console.log(orderId);
+      const updatedOrder = await Order.updateOne(
+        { _id: orderId, confirmed: false },
+        { $set: { confirmed: true }, confirmedAt: new Date() }
+      ).exec();
+      // console.log(updatedOrder);
+    });
 
     //     _.chain(req.body)
     //       .map(({ email, url }) => {
