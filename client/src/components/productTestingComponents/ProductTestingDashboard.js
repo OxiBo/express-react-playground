@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+
 import { fetchReviews } from "../../actions";
 
 class ProductTestingDashboard extends Component {
@@ -135,3 +136,4 @@ const mapStateToProps = ({ auth, reviews }) => {
 export default connect(mapStateToProps, { fetchReviews })(
   ProductTestingDashboard
 );
+

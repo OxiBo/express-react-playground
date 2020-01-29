@@ -61,6 +61,8 @@ note: if you have a form and use it in a few places you need to use different na
         .... - other props 
         />)
 
+* to make sure the new form is empty - wrapped NewReview component in reduxForm like this  - export default reduxForm({ form: "newReview" })(NewReview);
+
 10. For payments with Stripe on the frontend: 
    a. instal react-stripe-checkout for frontend
    b. create component: 

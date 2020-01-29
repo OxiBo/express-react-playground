@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { reduxForm } from "redux-form";
+
 import ReviewNewForm from "./ReviewNewForm";
 import ReviewNewCheck from "./ReviewNewCheck";
 import { reviewNewFormFields } from "./reviewFormFields"; // ???
 
-export default class NewReview extends Component {
+class NewReview extends Component {
   state = {
     showCheckReviewForm: false
   };
@@ -12,12 +14,14 @@ export default class NewReview extends Component {
     if (this.state.showCheckReviewForm) {
       return (
         <ReviewNewCheck
+          form="newReview"
           onCancel={() => this.setState({ showCheckReviewForm: false })}
         />
       );
     }
     return (
       <ReviewNewForm
+        form="newReview"
         reviewFormFields={reviewNewFormFields}
         onFormSubmit={() => this.setState({ showCheckReviewForm: true })}
       />
@@ -28,3 +32,5 @@ export default class NewReview extends Component {
     return <>{this.renderContent()}</>;
   }
 }
+
+export default reduxForm({ form: "newReview" })(NewReview);

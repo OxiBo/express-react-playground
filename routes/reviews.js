@@ -20,7 +20,7 @@ router.get("/api/reviews", isLoggedIn, async (req, res) => {
 });
 
 router.post("/api/reviews", isLoggedIn, async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const {
     productName,
     productUrl,
