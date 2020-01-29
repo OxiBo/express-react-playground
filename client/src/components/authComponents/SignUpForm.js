@@ -6,7 +6,7 @@ import formFields from "./formFields";
 import validateEmail from "../../utils/validateEmail";
 import validateURL from "../../utils/validateURL";
 
-import renderRadioInput  from "../../utils/renderRadioInput";
+import renderRadioInput from "../../utils/renderRadioInput";
 import { signup } from "../../actions";
 import axios from "axios";
 
@@ -103,13 +103,10 @@ class SignUpForm extends Component {
     });
   }
 
-  
   onSubmit = formValues => {
     this.props.signup(formValues, this.props.history, "signup");
   };
   render() {
-    // console.log(this.props);
-    // const className = `field ${this.props.authError} ? "error" : ""}`;
     return (
       <div className="ui main text container segment">
         {this.props.current_user ? (

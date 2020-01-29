@@ -28,16 +28,13 @@ class MainComponent extends Component {
     this.props.fetchUser();
   }
 
-  // notify = () => {
-  //   toast(this.props.message);
-  // };
-
   render() {
     return (
-      <div className='layout'>
-        {this.props.message && this.notify()}{/* <BrowserRouter>      */}
+      <div className="layout">
+        {this.props.message && this.notify()}
+        {/* <BrowserRouter>      */}
         <Header />
-      
+
         <ToastContainer
           position="top-center"
           autoClose={5000}
@@ -58,7 +55,11 @@ class MainComponent extends Component {
           <Route exact path="/edit-profile/:userid" component={EditProfile} />
           <Route exact path="/order/:productId" component={OrderProduct} />
           <Route exact path="/products" component={ProductsList} />
-          <Route exact path="/product-testing" component={ProductTestingDashboard} />
+          <Route
+            exact
+            path="/product-testing"
+            component={ProductTestingDashboard}
+          />
           <Route exact path="/reviews/new" component={NewReview} />
           <Route exact path="/reviews/:reviewId/edit" component={EditReview} />
           {/* <Route component={NotFound} /> */}
@@ -70,9 +71,5 @@ class MainComponent extends Component {
     );
   }
 }
-// const mapStateToProps = ({ message }) => {
-//   return {
-//     message: message.message
-//   };
-// };
+
 export default connect(null, { fetchUser })(MainComponent);

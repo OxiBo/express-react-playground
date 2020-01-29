@@ -8,7 +8,7 @@ class ProductTestingDashboard extends Component {
     this.props.fetchReviews();
   }
 
-  renderReviewList(){
+  renderReviewList() {
     // https://stackoverflow.com/questions/30142361/react-js-uncaught-typeerror-this-props-data-map-is-not-a-function
     return Array.from(this.props.reviewList).map(
       (
@@ -38,15 +38,22 @@ class ProductTestingDashboard extends Component {
             </td>
             <td>{price.toFixed(2)}</td>
             <td>
-              <a href={`${contact.profileUrl}`} target="_blank" rel="noopener noreferrer">
+              <a
+                href={`${contact.profileUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {contact.name}
               </a>
-              , <br/>{contact.email}
+              , <br />
+              {contact.email}
             </td>
             <td>{new Date(orderDate).toLocaleDateString()}</td>
             <td>
               {reviewSubmitDate ? (
-                <a href={reviewUrl} target="_blank" rel="noopener noreferrer">{new Date(reviewSubmitDate).toLocaleDateString()}</a>
+                <a href={reviewUrl} target="_blank" rel="noopener noreferrer">
+                  {new Date(reviewSubmitDate).toLocaleDateString()}
+                </a>
               ) : (
                 "---"
               )}
@@ -54,12 +61,16 @@ class ProductTestingDashboard extends Component {
             <td className="">
               {refundDate ? new Date(refundDate).toLocaleDateString() : "---"}
             </td>
-            <td><Link to={`/reviews/${_id}/edit`}><i className="edit icon"></i></Link></td>
+            <td>
+              <Link to={`/reviews/${_id}/edit`}>
+                <i className="edit icon"></i>
+              </Link>
+            </td>
           </tr>
         );
       }
     );
-  };
+  }
 
   render() {
     return (
@@ -86,24 +97,28 @@ class ProductTestingDashboard extends Component {
             </div>
             <div className="ui main">
               {this.props.reviewList.length ? (
-              <table className="ui celled stripped table">
-                <thead>
-                  <tr className="center aligned">
-                    <th>Product name</th>
-                    <th>Price, $</th>
-                    <th>Contact</th>
-                    <th>Order date</th>
-                    <th>Review submit date</th>
-                    <th>Refund date</th>
-                    <th>Edit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.props.reviewList && this.renderReviewList()}
-                </tbody>
-              </table>) : (<div className="ui segment center aligned "><h4>You don't have any tests in your list yet</h4></div>)}
+                <table className="ui celled stripped table">
+                  <thead>
+                    <tr className="center aligned">
+                      <th>Product name</th>
+                      <th>Price, $</th>
+                      <th>Contact</th>
+                      <th>Order date</th>
+                      <th>Review submit date</th>
+                      <th>Refund date</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.props.reviewList && this.renderReviewList()}
+                  </tbody>
+                </table>
+              ) : (
+                <div className="ui segment center aligned ">
+                  <h4>You don't have any tests in your list yet</h4>
+                </div>
+              )}
             </div>
-            
           </>
         )}
       </div>

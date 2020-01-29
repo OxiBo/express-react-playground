@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import ReviewNewForm from "./ReviewNewForm";
 
 import { fetchReview } from "../../actions";
-// import ReviewNewForm from "./ReviewNewForm";
 import { reviewNewFormFields, reviewEditFormFields } from "./reviewFormFields"; // ???
 
 const formFields = [...reviewNewFormFields, ...reviewEditFormFields];

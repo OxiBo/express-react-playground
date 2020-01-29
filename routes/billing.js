@@ -115,7 +115,7 @@ router.post("/api/order/webhooks", (req, res) => {
     });
     // console.log(newArr);
     newArr.forEach(async ({ orderId }) => {
-      console.log(orderId);
+      // console.log(orderId);
       const updatedOrder = await Order.updateOne(
         { _id: orderId, confirmed: false },
         { $set: { confirmed: true }, confirmedAt: new Date() }

@@ -11,18 +11,16 @@ class ProductsList extends Component {
   render() {
     return (
       <main className="ui main container segment">
-        
-
         <h3 id="pricesSection" className="gradientLine">
           Our products
         </h3>
         <section id="prices" className="ui main container">
-          {this.props.productsList.length ? 
+          {this.props.productsList.length ? (
             this.props.productsList.map(
               ({ name, ingredients, price, imageURL, _id }) => {
                 return (
                   <Product
-                  key={name}
+                    key={name}
                     name={name}
                     price={price}
                     ingredients={ingredients}
@@ -31,9 +29,10 @@ class ProductsList extends Component {
                   />
                 );
               }
-            ) : (<div>Server Error</div>)}
-           
-
+            )
+          ) : (
+            <div>Server Error</div>
+          )}
         </section>
       </main>
     );

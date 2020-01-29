@@ -65,8 +65,6 @@ class ReviewNewForm extends Component {
   }
 
   onSubmit = formValues => {
-    // this.props.(formValues, this.props.history, "signup");
-    // console.log(formValues);
     const {
       formType,
       submitEditReviewForm,
@@ -79,8 +77,6 @@ class ReviewNewForm extends Component {
       : onFormSubmit();
   };
   render() {
-    // console.log(this.props);
-    // const className = `field ${this.props.authError} ? "error" : ""}`;
     return (
       <div className="ui main text container segment">
         {!this.props.current_user ? (
