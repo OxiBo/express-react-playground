@@ -11,7 +11,8 @@ const reviewNewFormFields = [
 const reviewEditFormFields = [
   { label: "Review submit date", name: "reviewSubmitDate", type: "date" },
   { label: "Review Url", name: "reviewUrl", type: "text" },
-  { label: "Refund Date", name: "refundDate", type: "date" }
+  { label: "Refund Date", name: "refundDate", type: "date" },
+  { label: "Refund Amount", name: "refundAmount", type: "text" }
 ];
 
 export { reviewNewFormFields, reviewEditFormFields };

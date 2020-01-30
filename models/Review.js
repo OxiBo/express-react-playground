@@ -11,6 +11,7 @@ const reviewSchema = new Schema({
   reviewSubmitDate: Date,
   reviewUrl: String,
   refundDate: Date,
+  refundAmount: Number,
   createdAt: { type: Date, default: new Date}, 
   _user:  { type: Schema.Types.ObjectId, ref: "User" }
 });

@@ -124,7 +124,7 @@ const validate = (formValues, props) => {
 
   // check if user filled in price field with a number
   if (isNaN(formValues.price)) {
-    errors.price = "Price have to be a number";
+    errors.price = "Price has to be a number";
   }
 
   if (!formValues.productUrl) {
@@ -162,6 +162,17 @@ const validate = (formValues, props) => {
   if (!formValues.orderDate) {
     // run if the user did not enter order date
     errors.orderDate = "You must enter order date";
+  }
+
+
+
+  if (formValues.reviewUrl && !validateURL(formValues.reviewUrl)) {
+    errors.reviewUrl = "Enter valid URL";
+  }
+
+   // check if user filled in refund amount field with a number
+   if (formValues.refundAmount && isNaN(formValues.refundAmount)) {
+    errors.refundAmount = "Refund amount has to be a number";
   }
   //   console.log(errors);
   return errors;

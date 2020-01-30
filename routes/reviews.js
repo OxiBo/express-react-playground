@@ -76,7 +76,8 @@ router.patch("/api/reviews/:reviewId/edit", isLoggedIn, async (req, res) => {
     orderDate,
     reviewSubmitDate,
     reviewUrl,
-    refundDate
+    refundDate,
+    refundAmount
   } = req.body;
 
   try {
@@ -88,7 +89,8 @@ router.patch("/api/reviews/:reviewId/edit", isLoggedIn, async (req, res) => {
       orderDate,
       reviewSubmitDate,
       reviewUrl,
-      refundDate
+      refundDate, 
+      refundAmount
     });
     res.send({});
     // console.log(reviews)

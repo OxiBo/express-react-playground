@@ -24,7 +24,8 @@ class EditReview extends Component {
       contact: { name, profileUrl, email },
       orderDate,
       reviewSubmitDate,
-      reviewUrl
+      reviewUrl,
+      refundAmount
     } = this.props.review;
 
     // format dates to make redux form render proper initial values; format - https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd
@@ -45,7 +46,8 @@ class EditReview extends Component {
           email,
           orderDate: formatedOrderDate,
           reviewSubmitDate: formatedReviewSubmitDate,
-          reviewUrl
+          reviewUrl,
+          refundAmount
         }}
         formType={"edit"}
       />

@@ -22,6 +22,7 @@ class ProductTestingDashboard extends Component {
           reviewSubmitDate,
           refundDate,
           reviewUrl,
+          refundAmount,
           _id
         },
         index
@@ -62,6 +63,7 @@ class ProductTestingDashboard extends Component {
             <td className="">
               {refundDate ? new Date(refundDate).toLocaleDateString() : "---"}
             </td>
+            <td>{refundAmount ? refundAmount.toFixed(2) : "---"}</td>
             <td>
               <Link to={`/reviews/${_id}/edit`}>
                 <i className="edit icon"></i>
@@ -70,6 +72,41 @@ class ProductTestingDashboard extends Component {
           </tr>
         );
       }
+    );
+  }
+
+  calcTotals = reviews => {
+    const totals = reviews.reduce(
+      (acc, review) => {
+        acc.total += review.price;
+        acc.refund += review.refundAmount ? review.refundAmount : 0;
+        return acc;
+      },
+      { total: 0, refund: 0 }
+    );
+    return {
+      total: totals.total.toFixed(2),
+      refund: totals.refund.toFixed(2)
+    };
+  };
+
+  renderTotals() {
+    return (
+      <tfoot className="full-width">
+        <tr>
+          <th className="ui left aligned">
+            <strong>Total</strong>
+          </th>
+          <th className="ui center aligned">
+            <strong>{this.calcTotals(this.props.reviewList).total}</strong>
+          </th>
+
+          <th colSpan="5" className="ui right aligned">
+            <strong>$ {this.calcTotals(this.props.reviewList).refund}</strong>
+          </th>
+          <th></th>
+        </tr>
+      </tfoot>
     );
   }
 
@@ -107,12 +144,14 @@ class ProductTestingDashboard extends Component {
                       <th>Order date</th>
                       <th>Review submit date</th>
                       <th>Refund date</th>
+                      <th>Refund amount</th>
                       <th>Edit</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.props.reviewList && this.renderReviewList()}
                   </tbody>
+                  {this.props.reviewList && this.renderTotals()}
                 </table>
               ) : (
                 <div className="ui segment center aligned ">
@@ -136,4 +175,3 @@ const mapStateToProps = ({ auth, reviews }) => {
 export default connect(mapStateToProps, { fetchReviews })(
   ProductTestingDashboard
 );
-
