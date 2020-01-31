@@ -98,7 +98,7 @@ class ProductTestingDashboard extends Component {
             <strong>Total</strong>
           </th>
           <th className="ui center aligned">
-            <strong>{this.calcTotals(this.props.reviewList).total}</strong>
+            <strong>$ {this.calcTotals(this.props.reviewList).total}</strong>
           </th>
 
           <th colSpan="5" className="ui right aligned">
