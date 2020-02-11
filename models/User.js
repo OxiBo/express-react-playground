@@ -48,3 +48,44 @@ userSchema.methods.validPassword = function(password) {
 };
 
 module.exports = mongoose.model("users", userSchema);
+
+
+// other encrypting library
+/*
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+const bcrypt = require("bcryptjs");
+// Define our model
+const userSchema = new Schema({
+  email: { type: String, unique: true, lowercase: true },
+  password: String
+});
+
+// user instance hook, run this function before saving a model
+userSchema.pre("save", async function(next) {
+  // do not use arrow function here
+  const user = this; // get access to the user model
+  try {
+    // generate salt
+    const salt = await bcrypt.genSalt(10);
+    // hash (encrypt) password using the salt
+    const hash = await bcrypt.hash(user.password, salt);
+
+    // override plain text password with encrypted password
+    user.password = hash;
+    next();
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// Create the model class
+const ModelClass = mongoose.model("user", userSchema);
+
+// Export the model
+module.exports = ModelClass;
+
+
+
+
+*/

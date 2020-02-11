@@ -43,6 +43,7 @@ passport.use(
       } catch (err) {
         console.error(err);
         // req.flash("error", err.message);
+        done(err);
         // res won't work
         // res.status(422).send(err); // reason why 422 - https://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data
       }

@@ -4,6 +4,7 @@ import authReducer from "./authReducer";
 import productsReducer from "./productsReducer";
 import orderReducer from "./orderReducer";
 import reviewsReducer from "./reviewsReducer";
+import filterReducer from "./filterReducer";
 // import fleshMessageReducer from "./fleshMessageReducer";
 // import surveysReducer from './surveysReducer';
 // import errorReducer from './errorReducer'
@@ -15,7 +16,8 @@ export default combineReducers({
   form: reduxForm,
   products: productsReducer,
   order: orderReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  filter: filterReducer
   // message: fleshMessageReducer
 //   surveys: surveysReducer,
 //   error: errorReducer,

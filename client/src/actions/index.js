@@ -13,7 +13,9 @@ import {
   FETCH_ORDERS,
   FETCH_REVIEWS,
   FETCH_REVIEW,
-  REVIEWS_ERROR
+  REVIEWS_ERROR,
+  SORT_BY,
+  FIND_BY_PRODUCT
 } from "./types";
 import axios from "axios";
 
@@ -267,3 +269,14 @@ export const submitEditReviewForm = (
   }
   history.push(`/product-testing`);
 };
+
+
+export const chooseSortBy = filter => ({
+  type: SORT_BY,
+  payload: filter
+});
+
+export const findByProduct = productName => ({
+  type: FIND_BY_PRODUCT,
+  payload: productName
+});

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { fetchReviews } from "../../actions";
+import { fetchReviews, findByProduct, chooseSortBy } from "../../actions";
+import filterReviews from "../../utils/filterReviews";
 
 class ProductTestingDashboard extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class ProductTestingDashboard extends Component {
         index
       ) => {
         const style = refundDate ? "positive" : "negative";
+        // console.log(new Date(refundDate).toLocaleDateString());
         return (
           <tr
             key={`${index}-${productName}`}
@@ -110,7 +112,59 @@ class ProductTestingDashboard extends Component {
     );
   }
 
+  renderSortAndFilter() {
+    return (
+      <div className="ui two column center aligned grid">
+        {/* <div class="middle aligned row"> */}
+        <div className="column right aligned">
+          <label htmlFor=""> Find by product name:</label>
+          <div className="ui input">
+            <input
+              placeholder="Enter product name"
+              type="text"
+              className="validate"
+              id="findByProductName"
+              name="findByProductName"
+              value={this.props.productNameToFind} // titleToFind
+              onChange={e => {
+                console.log(e.target.value);
+
+                this.props.findByProduct(e.target.value);
+              }}
+            />
+            {/* <label htmlFor="findByTitle">Enter Title</label> */}
+          </div>
+        </div>
+
+        <div className="column left aligned">
+          {/* <div className="field item"> */}
+          {/* <div className="field"> */}
+          <label>Sort your products </label>
+          <select
+            className="ui dropdown"
+            value={this.props.filterCriteria}
+            onChange={e => {
+              console.log(e.target.value);
+              this.props.chooseSortBy(e.target.value);
+            }}
+          >
+            <option value="" disabled>
+              Sort By
+            </option>
+            <option value="productName">product name</option>
+            <option value="newest">newest</option>
+            <option value="oldest">oldest</option>
+            <option value="refundStatus">refund status</option>
+            <option value="refundLatest">latest refund date</option>
+            <option value="refundOldest">oldest refund date</option>
+          </select>
+        </div>
+      </div>
+    );
+  }
+
   render() {
+    console.log(this.props.reviewList);
     return (
       <div className="ui main container segment">
         {!this.props.current_user ? (
@@ -135,24 +189,27 @@ class ProductTestingDashboard extends Component {
             </div>
             <div className="ui main">
               {this.props.reviewList.length ? (
-                <table className="ui celled stripped table">
-                  <thead>
-                    <tr className="center aligned">
-                      <th>Product name</th>
-                      <th>Price, $</th>
-                      <th>Contact</th>
-                      <th>Order date</th>
-                      <th>Review submit date</th>
-                      <th>Refund date</th>
-                      <th>Refund amount</th>
-                      <th>Edit</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.props.reviewList && this.renderReviewList()}
-                  </tbody>
-                  {this.props.reviewList && this.renderTotals()}
-                </table>
+                <>
+                  {this.renderSortAndFilter()}
+                  <table className="ui celled stripped table">
+                    <thead>
+                      <tr className="center aligned">
+                        <th>Product name</th>
+                        <th>Price, $</th>
+                        <th>Contact</th>
+                        <th>Order date</th>
+                        <th>Review submit date</th>
+                        <th>Refund date</th>
+                        <th>Refund amount</th>
+                        <th>Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.props.reviewList && this.renderReviewList()}
+                    </tbody>
+                    {this.props.reviewList && this.renderTotals()}
+                  </table>
+                </>
               ) : (
                 <div className="ui segment center aligned ">
                   <h4>You don't have any tests in your list yet</h4>
@@ -166,12 +223,32 @@ class ProductTestingDashboard extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, reviews }) => {
+const mapStateToProps = ({ auth, reviews, filter }) => {
+  // console.log(
+  //   filterReviews(
+  //     reviews,
+  //     filter,
+  //     filter === "sort" ? filter.filterByCriteria : filter.productNameToFind
+  //   ).reviews
+  // );
   return {
     current_user: auth.user,
-    reviewList: reviews.reviews
+
+    reviewList: filterReviews(
+      reviews.reviews,
+      filter.filter,
+      filter.filter === "sort"
+        ? filter.filterByCriteria
+        : filter.productNameToFind
+    ),
+
+    // reviewList: reviews.reviews,
+    filterCriteria: filter.filterByCriteria,
+    productNameToFind: filter.productNameToFind
   };
 };
-export default connect(mapStateToProps, { fetchReviews })(
-  ProductTestingDashboard
-);
+export default connect(mapStateToProps, {
+  fetchReviews,
+  findByProduct,
+  chooseSortBy
+})(ProductTestingDashboard);

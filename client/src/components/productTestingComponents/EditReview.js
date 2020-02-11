@@ -16,7 +16,7 @@ class EditReview extends Component {
   }
 
   renderEditForm() {
-    console.log(this.props.review);
+    // console.log(this.props.review);
     const {
       productName,
       productUrl,
