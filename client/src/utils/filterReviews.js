@@ -18,7 +18,7 @@ export default (reviews, filter, key) => {
       } else if (key === "refundStatus") {
         return compareProperty(a.refundAmount, b.refundAmount);
       } else if (key === "productName") {
-        return b.productName.localeCompare(a.productName); // https://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
+        return a.productName.localeCompare(b.productName); // https://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
       } else {
         return reviews;
       }
