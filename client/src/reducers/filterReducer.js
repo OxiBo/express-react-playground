@@ -1,5 +1,5 @@
 import { SORT_BY, FIND_BY_PRODUCT } from "../actions/types";
-const defaultFilterReducer = { filter: "", filterByCriteria: "", productNameToFind: "" };
+const defaultFilterReducer = { filterType: "", filterByCriteria: "", productNameToFind: "" };
 export default (state = defaultFilterReducer, action) => {
   //   console.log(action);
   //   console.log("??" + action.payload)
@@ -7,13 +7,13 @@ export default (state = defaultFilterReducer, action) => {
     case SORT_BY:
       return {
         ...state,
-        filter: 'sort',
+        filterType: 'sort',
         filterByCriteria: action.payload
       };
     case FIND_BY_PRODUCT:
       return {
         ...state,
-        filter: "find",
+        filterType: "find",
         productNameToFind: action.payload
       };
     default:

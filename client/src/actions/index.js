@@ -213,7 +213,7 @@ export const fetchReviews = () => async (dispatch, getState) => {
     dispatch({ type: FETCH_REVIEWS, payload: res.data });
   } catch (error) {
     console.error(error);
-    dispatch({ type: REVIEWS_ERROR, payload: error.response.data }); // ???
+    dispatch({ type: REVIEWS_ERROR, payload: error.response }); // ???
     const current_user = getState().auth.user;
     if (current_user) {
       toast("Sorry! Failed to load review list!", errorTostStyle);
