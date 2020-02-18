@@ -1,6 +1,8 @@
 $menuColor: #fee8d6;
 $textColor: #7b3f00;
 $h1Color: #5e2612;
+$backgroundColor: lightsalmon;
+$navbarBackground: rgb(110, 9, 9);
 $sectionsBackground: #fff5ee;
 $buttonOrderColor: #8b4500;
 $activeLinkColor: #ffdab9;
@@ -20,7 +22,7 @@ $prodNameDivColor: #ffdab9;
 }
 
 body {
-  background-color: lightsalmon;
+  background-color: $backgroundColor;
 }
 
 .compt-content {

@@ -7,14 +7,62 @@ import { Link } from "react-router-dom";
 // import "react-toastify/dist/ReactToastify.css";
 
 class Header extends Component {
+  state = {
+    menuOpen: false
+  };
+
+  handleWindowResize = () => {
+    // console.log(this)
+    if (window.innerWidth > 600) {
+      this.setState({
+        menuOpen: false
+      });
+    }
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handleWindowResize);
+  }
+
   render() {
-    // console.log(this.props.auth.user.local.username);
-    // console.log(this.props.current_user.local);
-    // const { local, google, facebook } = this.props.auth.user;
+    const menuStyles = !this.state.menuOpen
+      ? "ui fixed inverted menu"
+      : "nav-links";
+    const menuExtended = this.state.menuOpen ? "close" : "open";
+    const menuFolded = !this.state.menuOpen ? "close" : "open";
     return (
       <>
         <nav>
-          <div className="ui fixed inverted menu">
+          <div className="nav-mobile">
+            <div id="nav-button">
+              <button
+                onClick={() =>
+                  this.setState(prevState => ({
+                    menuOpen: !prevState.menuOpen
+                  }))
+                }
+                id="toggle"
+                aria-expanded="false"
+                aria-controls="menu-list"
+              >
+                <span id="spanOpen" className={menuExtended}>
+                  ☰
+                </span>
+                <span id="spanClose" className={menuFolded}>
+                  ×
+                </span>{" "}
+                Menu
+              </button>
+            </div>
+          </div>
+          <div
+            className={menuStyles}
+            onClick={() =>
+              this.setState(prevState => ({
+                menuOpen: !prevState.menuOpen
+              }))
+            }
+          >
             <div className="left menu">
               <Link to="/home" className="ui item">
                 HOME
@@ -25,13 +73,10 @@ class Header extends Component {
             </div>
             <div className="right menu">
               {this.props.auth.user ? (
-                <> 
-                 <Link
-                    to={`/product-testing`}
-                    className="ui item"
-                  >
-                  <i className="amazon icon"></i>
-                   Testing
+                <>
+                  <Link to={`/product-testing`} className="ui item">
+                    <i className="amazon icon"></i>
+                    Testing
                   </Link>
                   <Link
                     to={`/user-profile/${this.props.auth.user._id}`}

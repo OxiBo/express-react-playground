@@ -1,0 +1,75 @@
+nav {
+  position: fixed;
+  flex: 1;
+  justify-content: center;
+  width: 100%;
+  opacity: 0.95;
+  z-index: 2;
+}
+
+div.ui.fixed.inverted.menu {
+  position: fixed !important;
+}
+@media only screen and (max-width: 600px) {
+  div.ui.fixed.inverted.menu {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex !important;
+    float: right;
+    flex-direction: column;
+    background-color: $sectionsBackground;
+    opacity: 0.95;
+    width: 70%;
+    justify-content: center;
+    align-items: stretch;
+    justify-items: center;
+    border-radius: 3px;
+    div {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $textColor;
+        font-weight: bold;
+        height: 3rem;
+        align-self: stretch;
+        border: 1px solid rgb(221, 217, 197);
+        border-radius: 3px;
+        cursor: pointer;
+        i {
+          color: $textColor;
+        }
+      }
+      a:hover {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .nav-mobile {
+    display: flex !important;
+    justify-content: flex-end;
+    // justify-items: center;
+    align-items: stretch;
+    // align-content: center;
+    height: 50px;
+    background-color: $navbarBackground;
+    #nav-button button {
+      font-weight: bold;
+      background-color: $menuColor;
+      height: 100%;
+      width: 8rem;
+      span.close {
+        display: none;
+      }
+    }
+    #nav-button button:hover {
+      background-color: $activeLinkColor;
+    }
+  }
+}

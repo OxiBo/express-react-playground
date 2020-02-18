@@ -1,6 +1,6 @@
 // https://codereview.stackexchange.com/questions/70314/elegant-way-to-sort-on-multiple-properties-that-might-be-undefined
 function compareProperty(a, b) {
-  return a && b ? b - a : !b ? -1 : !a ? 1 : 0; // !a ? 1 : !b ? -1 : b - a   //!a ? 1 : !b ? -1 : b - a; // (a || b) ? (!a ? -1 : !b ? -1 : b - a) : 0;
+  return    a && b ? b - a : !b ? -1 : !a ? 1 : 0; // !a ? 1 : !b ? -1 : b - a   //!a ? 1 : !b ? -1 : b - a; // (a || b) ? (!a ? -1 : !b ? -1 : b - a) : 0;
 }
 
 export default (reviews, filter, key) => {
@@ -11,7 +11,7 @@ export default (reviews, filter, key) => {
       } else if (key === "oldest") {
         return compareProperty(new Date(b.orderDate), new Date(a.orderDate));
       } else if (key === "refundLatest") {
-        console.log(new Date(a.refundDate), new Date(b.refundDate));
+        // console.log(new Date(a.refundDate), new Date(b.refundDate));
         return compareProperty(new Date(a.refundDate), new Date(b.refundDate));
       } else if (key === "refundOldest") {
         return compareProperty(new Date(b.refundDate), new Date(a.refundDate));
