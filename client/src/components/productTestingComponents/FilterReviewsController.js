@@ -8,7 +8,7 @@ class FilterReviewsController extends Component {
     return (
       <div className="ui two column center aligned grid">
         <div className="column right aligned">
-          <label htmlFor=""> Find by product name:</label>
+          <label> Find by product name:</label>
           <div className="ui input">
             <input
               placeholder="Enter product name"
@@ -16,7 +16,7 @@ class FilterReviewsController extends Component {
               className="validate"
               id="findByProductName"
               name="findByProductName"
-              value={this.props.productNameToFind} 
+              value={this.props.productNameToFind}
               onChange={e => {
                 this.props.findByProduct(e.target.value);
               }}
@@ -26,23 +26,25 @@ class FilterReviewsController extends Component {
 
         <div className="column left aligned">
           <label>Sort your products </label>
-          <select
-            className="ui dropdown"
-            value={this.props.filterCriteria}
-            onChange={e => {
-              this.props.chooseSortBy(e.target.value);
-            }}
-          >
-            <option value="" disabled>
-              Sort By
-            </option>
-            <option value="productName">product name</option>
-            <option value="newest">newest</option>
-            <option value="oldest">oldest</option>
-            <option value="refundStatus">refund status</option>
-            <option value="refundLatest">latest refund date</option>
-            <option value="refundOldest">oldest refund date</option>
-          </select>
+          <div className="ui input">
+            <select
+              className="ui dropdown"
+              value={this.props.filterCriteria}
+              onChange={e => {
+                this.props.chooseSortBy(e.target.value);
+              }}
+            >
+              <option value="" disabled>
+                Sort By
+              </option>
+              <option value="productName">product name</option>
+              <option value="newest">newest</option>
+              <option value="oldest">oldest</option>
+              <option value="refundStatus">refund status</option>
+              <option value="refundLatest">latest refund date</option>
+              <option value="refundOldest">oldest refund date</option>
+            </select>
+          </div>
         </div>
       </div>
     );

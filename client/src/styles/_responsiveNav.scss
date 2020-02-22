@@ -5,71 +5,106 @@ nav {
   width: 100%;
   opacity: 0.95;
   z-index: 2;
-}
-
-div.ui.fixed.inverted.menu {
-  position: fixed !important;
-}
-@media only screen and (max-width: 600px) {
   div.ui.fixed.inverted.menu {
+    position: fixed !important;
+  }
+
+  #nav-button {
     display: none;
   }
+}
+
+@media only screen and (max-width: 600px) {
+  nav{
+    background-color:green!important;
+    .inverted.menu{
+      background: none!important;
+    }
+  }
+  // div.ui.fixed.inverted.menu {
+  //   display: none;
+  // }
 
   .nav-links {
     display: flex !important;
-    float: right;
+    // float: right;
+    // position: relative;
     flex-direction: column;
-    background-color: $sectionsBackground;
+    
     opacity: 0.95;
     width: 70%;
-    justify-content: center;
-    align-items: stretch;
-    justify-items: center;
+    // justify-content: center;
+    // align-items: stretch;
+    // justify-items: right;
     border-radius: 3px;
-    div {
-      display: flex;
+
+    #left-menu{
+      margin-right: 0!important;
+    }
+    .menu {
+      display: none !important;
+    }
+  
+    
+
+    .menuOpen {
+      display: flex !important;
       flex-direction: column;
-      text-align: center;
+      
       a {
         display: flex;
         justify-content: center;
         align-items: center;
-        color: $textColor;
-        font-weight: bold;
+        color: $textColor !important;
+        font-weight: bold !important;
         height: 3rem;
-        align-self: stretch;
+        width: 15rem;
+        background-color: $sectionsBackground!important;
+        align-self: flex-end;
         border: 1px solid rgb(221, 217, 197);
-        border-radius: 3px;
+        border-radius: 3px !important;
         cursor: pointer;
         i {
           color: $textColor;
         }
       }
       a:hover {
-        background-color: #fff;
+        background-color: #fff!important;
+      }
+
+
+    }
+
+   
+  
+
+    #nav-button {
+      display: flex;
+     background-color: $navbarBackground; // align-self: flex-end;
+      button {
+        font-weight: bold;
+       margin-left: auto;
+        background-color: $menuColor;
+        height: 3rem;
+        width: 8rem;
+        span.close {
+          display: none;
+        }
+      }
+      button:hover {
+        background-color: $activeLinkColor;
       }
     }
   }
 
-  .nav-mobile {
-    display: flex !important;
-    justify-content: flex-end;
-    // justify-items: center;
-    align-items: stretch;
-    // align-content: center;
-    height: 50px;
-    background-color: $navbarBackground;
-    #nav-button button {
-      font-weight: bold;
-      background-color: $menuColor;
-      height: 100%;
-      width: 8rem;
-      span.close {
-        display: none;
-      }
-    }
-    #nav-button button:hover {
-      background-color: $activeLinkColor;
-    }
-  }
+  // .nav-mobile {
+  //   display: flex !important;
+  //   justify-content: flex-end;
+  //   // justify-items: center;
+  //   align-items: stretch;
+  //   // align-content: center;
+  //   height: 50px;
+  //   background-color: $navbarBackground;
+
+  // }
 }

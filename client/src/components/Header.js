@@ -2,17 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-// flesh messages
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-
 class Header extends Component {
   state = {
     menuOpen: false
   };
 
   handleWindowResize = () => {
-    // console.log(this)
+    // https://medium.com/@renatorib/tackling-responsive-elements-in-react-and-why-ive-created-react-sizes-f7c87e3f9e64
     if (window.innerWidth > 600) {
       this.setState({
         menuOpen: false
@@ -23,17 +19,23 @@ class Header extends Component {
   componentDidMount() {
     window.addEventListener("resize", this.handleWindowResize);
   }
-
+  onMenuClick() {
+    this.setState(prevState => ({
+      menuOpen: !prevState.menuOpen
+    }));
+  }
   render() {
-    const menuStyles = !this.state.menuOpen
-      ? "ui fixed inverted menu"
-      : "nav-links";
-    const menuExtended = this.state.menuOpen ? "close" : "open";
-    const menuFolded = !this.state.menuOpen ? "close" : "open";
+    // const menuStyles = !this.state.menuOpen
+    //   ? "ui fixed inverted menu"
+    //   : "nav-links";
+    const { menuOpen } = this.state;
+    const hamburgerShow = menuOpen ? "close" : "open";
+    const hamburgerHide = !menuOpen ? "close" : "open";
+    const menuOpenStyles = menuOpen ? "menuOpen" : "";
     return (
       <>
         <nav>
-          <div className="nav-mobile">
+          <div className="ui fixed inverted menu nav-links">
             <div id="nav-button">
               <button
                 onClick={() =>
@@ -45,25 +47,20 @@ class Header extends Component {
                 aria-expanded="false"
                 aria-controls="menu-list"
               >
-                <span id="spanOpen" className={menuExtended}>
+                <span id="spanOpen" className={hamburgerShow}>
                   ☰
                 </span>
-                <span id="spanClose" className={menuFolded}>
+                <span id="spanClose" className={hamburgerHide}>
                   ×
-                </span>{" "}
+                </span>
                 Menu
               </button>
             </div>
-          </div>
-          <div
-            className={menuStyles}
-            onClick={() =>
-              this.setState(prevState => ({
-                menuOpen: !prevState.menuOpen
-              }))
-            }
-          >
-            <div className="left menu">
+            <div
+              id="left-menu"
+              className={`left menu ${menuOpenStyles}`}
+              onClick={() => this.onMenuClick()}
+            >
               <Link to="/home" className="ui item">
                 HOME
               </Link>
@@ -71,7 +68,10 @@ class Header extends Component {
                 Products
               </Link>
             </div>
-            <div className="right menu">
+            <div
+              className={`right menu ${menuOpenStyles}`}
+              onClick={() => this.onMenuClick()}
+            >
               {this.props.auth.user ? (
                 <>
                   <Link to={`/product-testing`} className="ui item">
@@ -86,7 +86,6 @@ class Header extends Component {
                     View Profile
                   </Link>
                   <a className="ui item" href="#">
-                    {/* {this.props.auth.user.local.username || this.props.auth.user.google.name} */}
                     Logged in as&nbsp;
                     {this.props.auth.user.google &&
                       this.props.auth.user.google.name}
@@ -123,22 +122,3 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps)(Header);
-
-/*
-
-
-(<li className="ui item">
-                <i className="address card icon"></i> Logged in as
-              </li>
-
-              <Link className="ui item" to="/home">
-                <i className="address card icon"></i> Finish registration
-              </Link>
-<li>
-<a className="ui item" href="/api/logout">
-                <i className="sign out alternate icon"></i>
-                Log Out
-              </a>
-</li>)
-
-*/

@@ -1,0 +1,38 @@
+div.ui.input {
+  max-width: 100% !important;
+  input {
+    max-width: 100%;
+  }
+  select {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ui.two.column.center.aligned.grid.column.aligned {
+    label {
+      display: block !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .ui.two.column.center.aligned.grid {
+    display: flex !important;
+    flex-direction: column;
+    //   justify-content: center;
+    //   justify-items: center;
+    align-items: center;
+    text-align: center;
+    div {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      // align-items: center;
+      input,
+      select {
+        width: 100% !important;
+      }
+    }
+  }
+}
