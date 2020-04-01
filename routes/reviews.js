@@ -18,7 +18,7 @@ router.get("/api/reviews", isLoggedIn, async (req, res) => {
     res.status(500).send(error);
   }
 });
-
+// should be 'api/review/new'
 router.post("/api/reviews", isLoggedIn, async (req, res) => {
   // console.log(req.body);
   const {
@@ -89,7 +89,7 @@ router.patch("/api/reviews/:reviewId/edit", isLoggedIn, async (req, res) => {
       orderDate,
       reviewSubmitDate,
       reviewUrl,
-      refundDate, 
+      refundDate,
       refundAmount
     });
     res.send({});

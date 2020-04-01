@@ -19,6 +19,11 @@ class Header extends Component {
   componentDidMount() {
     window.addEventListener("resize", this.handleWindowResize);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleWindowResize);
+  }
+
   onMenuClick() {
     this.setState(prevState => ({
       menuOpen: !prevState.menuOpen

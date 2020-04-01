@@ -14,14 +14,14 @@ class NewReview extends Component {
     if (this.state.showCheckReviewForm) {
       return (
         <ReviewNewCheck
-          form="newReview"
+          
           onCancel={() => this.setState({ showCheckReviewForm: false })}
         />
       );
     }
     return (
       <ReviewNewForm
-        form="newReview"
+        
         reviewFormFields={reviewNewFormFields}
         onFormSubmit={() => this.setState({ showCheckReviewForm: true })}
       />
@@ -33,4 +33,4 @@ class NewReview extends Component {
   }
 }
 
-export default reduxForm({ form: "newReview" })(NewReview);
+export default reduxForm({ form: "newReview"  })(NewReview);

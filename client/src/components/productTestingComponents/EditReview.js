@@ -35,7 +35,9 @@ class EditReview extends Component {
       new Date(reviewSubmitDate).toISOString().split("T")[0];
     return (
       <ReviewNewForm
-        form="editReviewForm" // without this prop this prop the new form will be filled in with initial values from previous form
+        form={"editReviewForm"} // without this prop the new form will be filled in with initial values from previous form - THIS DID NOT WORK!!
+        destroyOnUnmount={true}
+        enableReinitialize={true}
         reviewFormFields={formFields}
         initialValues={{
           productName,
@@ -59,9 +61,9 @@ class EditReview extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ reviews}) => {
   return {
-    review: state.reviews.review
+    review: reviews.review
   };
 };
 export default connect(mapStateToProps, { fetchReview })(
